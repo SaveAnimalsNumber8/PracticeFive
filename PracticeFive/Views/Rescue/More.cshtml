@@ -1,0 +1,61 @@
+﻿@model PracticeFive.Models.tRescue
+
+@{
+    ViewBag.Title = "More";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var commentlist = new List<PracticeFive.Models.tComment>();
+    using (PracticeFive.Models.SaveAnimalsEntities sadb = new PracticeFive.Models.SaveAnimalsEntities())
+    {
+        commentlist = (from s in sadb.tComment
+                       where s.CommentRescueID == this.Model.RescueID
+                       select s).ToList();
+    }
+}
+
+<link href="~/Content/rescueMoreDetails.css" rel="stylesheet" />
+
+<section class="moreDetails">
+    <div class="pic d-flex justify-content-center mt-5 mb-5"><img src="~/UpImg/@Html.DisplayFor(model => model.RescuePictures)"></div>
+    <div class="details">
+        <div class="content">
+            <div class="title mb-5">@Html.DisplayFor(model => model.RescueTitle)</div><span class="species mb-5">@Html.DisplayFor(model => model.tSpecies.SpeciesName)</span>
+            <div class="time mt-3 mb-3">
+                通報時間：@Html.DisplayFor(model => model.Created_At)
+            </div>
+            <div class="isDone mb-3">
+                案件狀態：@Html.DisplayFor(model => model.ResCueDone)
+            </div>
+            <div class="event mb-3">
+                通報類別：@Html.DisplayFor(model => model.RescueEvent)
+            </div>
+            <div class="memberName mb-3">
+                通報者：@Html.DisplayFor(model => model.tMember.MemberName)
+            </div>
+            <div class="position mb-3">
+                通報位置：@Html.DisplayFor(model => model.tPosition.positionPosition)@Html.DisplayFor(model => model.tPosition1.positionPosition)
+            </div>
+            <div class="progressing mb-3">
+                <div class="messagebox">
+                    @Html.DisplayFor(model => model.RescueProgress)
+                    @foreach (var comment in commentlist)
+                    {
+                        <div>
+                            @comment.CommentContent (@comment.Created_At)
+                        </div>
+                    }
+                </div>
+                <div class="input-group sendmessage">
+                    <input type="text" class="form-control" placeholder="回報進度"
+                           aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button">送出</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<p>
+    @Html.ActionLink("回到清單", "List")
+</p>

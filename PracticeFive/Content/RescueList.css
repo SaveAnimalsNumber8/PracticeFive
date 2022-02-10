@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+
+.rescueList .searchNav form h4 {
+  margin: 20px;
+  margin-bottom: 0;
+}
+
+.rescueList .searchNav form .dropdownstyle {
+  position: relative;
+  width: 6em;
+  height: 3em;
+  line-height: 3;
+  background: #f7f2c2;
+  overflow: hidden;
+  border-radius: 0.25em;
+  margin: 20px;
+  padding: 5px;
+}
+
+.rescueList .searchNav form .searchBtn {
+  width: 100px;
+  padding: 5px;
+  border: none;
+  background-color: #3c523f;
+  color: #b8ceba;
+  border-radius: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.rescueList .box .ListContent .card .pic {
+  height: 440px;
+  width: auto;
+}
+
+.rescueList .box .ListContent .card .pic img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  overflow: hidden;
+}
+
+.rescueList .box .ListContent .card a {
+  text-align: right;
+  text-decoration: none;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+/*# sourceMappingURL=RescueList.css.map */

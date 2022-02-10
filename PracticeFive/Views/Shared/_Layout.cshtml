@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - S.H.E.</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/Content/SubPageLayoutVer2.css">
+    <link rel="stylesheet" href="~/Content/RescueList.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <section class="header">
+        <nav>
+            <a href="Index"><img class="logo" src="/Img/logoSmall.png" alt=""></a>
+            <ul class="menu">
+                <li>
+                    @Html.ActionLink("救援通報", "List", "Rescue")
+                    <ul class="subs">
+                        <li class="submenu">@Html.ActionLink("我要通報", "Login", "Home")</li>
+                        <li class="submenu">@Html.ActionLink("我要救援", "List", "Rescue")</li>
+                    </ul>
+                </li>
+                <li>
+                    @Html.ActionLink("認養資訊", "List", "Transfer")
+                    <ul class="subs">
+                        <li class="submenu">@Html.ActionLink("我要送養", "Login", "Home")</li>
+                        <li class="submenu">@Html.ActionLink("我要認養", "List", "Transfer")</li>
+                    </ul>
+                </li>
+                <li>
+                    @Html.ActionLink("文章分享", "List", "Blog")
+                    <ul class="subs">
+                        <li class="submenu">@Html.ActionLink("救援心得", "ResuceExperience", "Blog")</li>
+                        <li class="submenu">@Html.ActionLink("認養故事", "TransferStory", "Blog")</li>
+                    </ul>
+                </li>
+                <li>@Html.ActionLink("聯絡我們", "ContactUs", "Home")</li>
+                <li>
+                    @Html.ActionLink("會員專區", "Login", "Home")
+                </li>
+            </ul>
+
+            <i class="fas fa-bars"></i>
+        </nav>
+    </section>
+
+    
+        @RenderBody()
+    
+
+
+    <div class="container body-content">
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/SubPageLayoutVer2.js"></script>
+</body>
+</html>

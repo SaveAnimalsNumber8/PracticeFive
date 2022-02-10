@@ -1,0 +1,149 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+.header {
+  position: relative;
+  width: 100%;
+}
+
+.header nav {
+  background-color: #cee5d0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header nav .logo {
+  margin: 20px;
+}
+
+.header nav ul {
+  position: absolute;
+  z-index: 10;
+  top: 100%;
+  left: -100%;
+  right: 100%;
+}
+
+.header nav ul li {
+  position: relative;
+  list-style: none;
+  background-color: #fff;
+  display: block;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.header nav ul li .subs {
+  position: relative;
+  top: 100%;
+  left: 0;
+}
+
+.header nav ul li .subs li {
+  background-color: #f7f2c2;
+}
+
+.header nav ul li .subs li a {
+  font-size: 25px;
+}
+
+.header nav ul li .subs li:hover {
+  background-color: #fff;
+}
+
+.header nav ul li:hover {
+  background-color: #f7f2c2;
+}
+
+.header nav ul li a {
+  text-decoration: none;
+  margin: 20px;
+  color: black;
+  font-size: 35px;
+}
+
+.header nav ul.active {
+  left: 0;
+  right: 0;
+}
+
+.header nav .fa-bars {
+  font-size: 60px;
+  margin: 20px;
+  cursor: pointer;
+}
+
+@media all and (min-width: 1300px) {
+  .header nav {
+    padding: 0 30px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .header nav .logo {
+    margin-top: 20px;
+  }
+  .header nav ul {
+    position: static;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: 0;
+    left: 0;
+    right: 0;
+  }
+  .header nav ul li {
+    position: relative;
+    font-size: 20px;
+    background-color: transparent;
+    padding: 5px;
+  }
+  .header nav ul li .subs {
+    position: absolute;
+    display: block;
+  }
+  .header nav ul li .subs li {
+    background-color: #cee5d0;
+    padding: 5px;
+  }
+  .header nav ul li .subs li a {
+    font-size: 23px;
+  }
+  .header nav ul li .subs li a:hover {
+    color: #f7f2c2;
+  }
+  .header nav ul li .subs li:hover {
+    background-color: #3c523f;
+  }
+  .header nav ul li .subs li:hover a {
+    color: #f7f2c2;
+  }
+  .header nav ul li:hover {
+    background-color: #3c523f;
+  }
+  .header nav ul li:hover > a {
+    color: #f7f2c2;
+  }
+  .header nav ul li a {
+    font-size: 28px;
+    color: #2b6954;
+  }
+  .header nav ul li a:hover {
+    color: #f7f2c2;
+  }
+  .header nav .fa-bars {
+    display: none;
+  }
+}
+/*# sourceMappingURL=SubPageLayoutVer2.css.map */

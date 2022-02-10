@@ -1,0 +1,158 @@
+﻿@model PracticeFive.Models.tRescue
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutMember.cshtml";
+}
+
+@using (Html.BeginForm("Edit", "RescueMember", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.RescueID, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.RescueID, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.RescueID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.RescueTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RescueTitle, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RescueTitle, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.RescueTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @*@Html.DropDownListFor(m => m.RescueTitle, (SelectList)ViewBag.SelectList, "請選擇", new { @class = "text-primary", @id = "City" })*@
+
+            @switch (Model.RescueTitle)
+            {
+                case "尋獲":
+                    <select id="selector" name="selector" style="">
+                        <option value="請選擇">請選擇</option>
+                        <option selected="selected" value="尋獲">尋獲</option>
+                        <option value="走失">走失</option>
+                        <option value="救援">救援</option>
+                    </select>
+                    break;
+                case "走失":
+                    <select id="selector" name="selector" style="">
+                        <option value="請選擇">請選擇</option>
+                        <option value="尋獲">尋獲</option>
+                        <option selected="selected" value="走失">走失</option>
+                        <option value="救援">救援</option>
+                    </select>
+                    break;
+                case "救援":
+                    <select id="selector" name="selector" style="">
+                        <option value="請選擇">請選擇</option>
+                        <option value="尋獲">尋獲</option>
+                        <option value="走失">走失</option>
+                        <option selected="selected" value="救援">救援</option>
+                    </select>
+                    break;
+            }
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ResCueDone, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ResCueDone, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ResCueDone, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.RescuePictures, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="file" name="upImg" value="upImg" id="upImg" />
+            @Html.EditorFor(model => model.RescuePictures, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.RescuePictures, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.RescuePositionCity, "RescuePosition", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.RescuePositionCity, (IEnumerable<SelectListItem>)ViewBag.City, "請選擇", new { @class = "text-primary", @id = "City" })
+            <span>@Html.DropDownListFor(m => m.RescuePositionCountry, (IEnumerable<SelectListItem>)ViewBag.Country, "請選擇", new { @class = "text-primary", @id = "Country" })</span>
+            @Html.ValidationMessageFor(model => model.RescuePositionCity, "", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(model => model.RescuePositionCountry, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.RescueEvent, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.RescueEvent, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.RescueEvent, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.RescueSpecies, "RescueSpecies", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.RescueSpecies, (IEnumerable<SelectListItem>)ViewBag.Species, "請選擇")
+            @Html.ValidationMessageFor(model => model.RescueSpecies, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.RescueProgress, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.RescueProgress, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.RescueProgress, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="儲存" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("回到清單", "List")
+</div>
+
+<script>
+    $('#City').change(function () {
+        var selectedCity = $('#City option:selected').val();
+        var country = $('#Country');
+        country.empty();
+        $.ajax({
+            type: "Post",
+            url: '@Url.Action("getCountry", "RescueMember")?id=' + selectedCity,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                if (data == "") {
+                    country.append("<option value=''>請選擇</option>");
+                }
+                else {
+                    var jo = JSON.parse(data);
+                    country.append("<option value=''>請選擇</option>");
+                    console.log(jo);
+                    for (i = 0; i < jo.length; i++) {
+                        country.append("<option value='" + jo[i].Value + "'>" + jo[i].Text + "</option>");
+                    }
+                }
+            },
+            failure: function (errMsg) {
+                country.append("<option value=''>請選擇縣市</option>");
+            }
+        })
+    })
+</script>
+
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>

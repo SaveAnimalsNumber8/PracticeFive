@@ -1,0 +1,32 @@
+﻿@model IEnumerable<PracticeFive.Models.tRescue>
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_LayoutMember.cshtml";
+}
+
+<div class="searchNav">
+    123
+</div>
+<div class="box">
+    <div class="ListContent d-flex flex-wrap">
+        @foreach (var item in Model)
+        {
+            <div class="card col-xl-3 col-md-4 col-sm-6 p-3">
+                <div class="title mb-10">
+                    @*<h2>@Html.DisplayFor(modelItem => item.RescueID)</h2>*@
+                    <h2>@Html.DisplayFor(modelItem => item.RescueTitle)</h2>
+                </div>
+                <div class="pic mb-10"><img src="~/UpImg/@Html.DisplayFor(modelItem => item.RescuePictures)" alt=""></div>
+                <div class="content mb-10">
+                    <h3 class="position mb-10">@Html.DisplayFor(modelItem => item.tPosition.positionPosition)</h3>
+                    <h3 class="position mb-10">@Html.DisplayFor(modelItem => item.tPosition1.positionPosition)</h3>
+                    <p class="event mb-10 ellipsis">@Html.DisplayFor(modelItem => item.RescueEvent)</p>
+                    <p class="time mb-10">@Html.DisplayFor(modelItem => item.Created_At)</p>
+                </div>
+                @Html.ActionLink("更多資訊", "More", new { id = item.RescueID })
+            </div>
+        }
+
+    </div>
+</div>

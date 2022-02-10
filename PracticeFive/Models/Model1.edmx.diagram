@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3c8eb9d0597340ea9d4a8d70fbf4f536" Name="Diagram1">
+        <EntityTypeShape EntityType="SaveAnimalsModel.tMember" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SaveAnimalsModel.tPosition" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SaveAnimalsModel.tRescue" Width="1.5" PointX="7.625" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SaveAnimalsModel.tSpecies" Width="1.5" PointX="1" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector Association="SaveAnimalsModel.FK__tRescue__RescueM__6EF57B66" ManuallyRouted="false" />
+        <AssociationConnector Association="SaveAnimalsModel.FK__tRescue__RescueP__70DDC3D8" ManuallyRouted="false" />
+        <AssociationConnector Association="SaveAnimalsModel.FK__tRescue__RescueP__71D1E811" ManuallyRouted="false" />
+        <AssociationConnector Association="SaveAnimalsModel.FK__tRescue__RescueS__6FE99F9F" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SaveAnimalsModel.tTransfer" Width="1.5" PointX="10.625" PointY="0.625" />
+        <AssociationConnector Association="SaveAnimalsModel.FK__tTransfer__Trans__3F466844" />
+        <AssociationConnector Association="SaveAnimalsModel.FK__tTransfer__Trans__412EB0B6" />
+        <AssociationConnector Association="SaveAnimalsModel.FK__tTransfer__Trans__4222D4EF" />
+        <AssociationConnector Association="SaveAnimalsModel.FK__tTransfer__Trans__403A8C7D" />
+        <EntityTypeShape EntityType="SaveAnimalsModel.tBlog" Width="1.5" PointX="5.25" PointY="3.375" />
+        <AssociationConnector Association="SaveAnimalsModel.FK__tBlog__BlogMembe__33D4B598" />
+        <EntityTypeShape EntityType="SaveAnimalsModel.tComment" Width="1.5" PointX="10.75" PointY="5.375" />
+        <AssociationConnector Association="SaveAnimalsModel.FK__tComment__Commen__49C3F6B7" />
+        <AssociationConnector Association="SaveAnimalsModel.FK__tComment__Commen__4AB81AF0" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

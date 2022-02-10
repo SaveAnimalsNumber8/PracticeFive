@@ -1,0 +1,49 @@
+﻿@model PracticeFive.Models.tTransfer
+
+@{
+    ViewBag.Title = "More";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/rescueMoreDetails.css" rel="stylesheet" />
+
+<section class="moreDetails">
+    <div class="pic d-flex justify-content-center mt-5 mb-5"><img src="~/UpImg/@Html.DisplayFor(model => model.TransferPictures)"></div>
+    <div class="details">
+        <div class="content">
+            <div class="title mb-5">@Html.DisplayFor(model => model.TransferName)</div><span class="species mb-5">@Html.DisplayFor(model => model.tSpecies.SpeciesName)</span>
+            <div class="time mt-3 mb-3">
+                送養地點：@Html.DisplayFor(model => model.tPosition.positionPosition)@Html.DisplayFor(model => model.tPosition1.positionPosition)
+            </div>
+            <div class="isDone mb-3">
+                案件狀態：@Html.DisplayFor(model => model.TransferDone)
+            </div>
+            <div class="event mb-3">
+                動物性別：@Html.DisplayFor(model => model.TransferGender)
+            </div>
+            <div class="event mb-3">
+                結紮與否：@Html.DisplayFor(model => model.TransferNeuter)
+            </div>
+            <div class="event mb-3">
+                動物狀態：@Html.DisplayFor(model => model.TransferSituation)
+            </div>
+            <div class="event mb-3">
+                送養要求：@Html.DisplayFor(model => model.TransferRequest)
+            </div>
+            <div class="memberName mb-3">
+                發布者：@Html.DisplayFor(model => model.tMember.MemberName)
+            </div>
+            <div class="memberName mb-3">
+                送養者：@Html.DisplayFor(model => model.TransferContactPerson)
+            </div>
+            <div class="position mb-3">
+                送養者聯絡方式：@Html.DisplayFor(model => model.TransferContactWay)
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<p>
+    @Html.ActionLink("回到清單", "List")
+</p>

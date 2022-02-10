@@ -1,0 +1,686 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SaveAnimalsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tBlog">
+          <Key>
+            <PropertyRef Name="BlogID" />
+          </Key>
+          <Property Name="BlogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BlogMemberID" Type="int" Nullable="false" />
+          <Property Name="BlogCategory" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BlogTitle" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="BlogContent" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Created_At" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tComment">
+          <Key>
+            <PropertyRef Name="CommentID" />
+          </Key>
+          <Property Name="CommentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CommentMemberID" Type="int" Nullable="false" />
+          <Property Name="CommentRescueID" Type="int" Nullable="false" />
+          <Property Name="CommentContent" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Created_At" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tMember">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="MemberAccount" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="MemberPassword" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Created_At" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tPosition">
+          <Key>
+            <PropertyRef Name="positionID" />
+          </Key>
+          <Property Name="positionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="positionBelong" Type="int" Nullable="false" />
+          <Property Name="positionPosition" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tRescue">
+          <Key>
+            <PropertyRef Name="RescueID" />
+          </Key>
+          <Property Name="RescueID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RescueMemberID" Type="int" Nullable="false" />
+          <Property Name="RescueTitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ResCueDone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RescuePictures" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="RescuePositionCity" Type="int" Nullable="false" />
+          <Property Name="RescuePositionCountry" Type="int" Nullable="false" />
+          <Property Name="RescueEvent" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="RescueSpecies" Type="int" Nullable="false" />
+          <Property Name="RescueProgress" Type="nvarchar" MaxLength="200" />
+          <Property Name="Created_At" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tSpecies">
+          <Key>
+            <PropertyRef Name="SpeciesID" />
+          </Key>
+          <Property Name="SpeciesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SpeciesName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tTransfer">
+          <Key>
+            <PropertyRef Name="TransferID" />
+          </Key>
+          <Property Name="TransferID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TransferMemberID" Type="int" Nullable="false" />
+          <Property Name="TransferDone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TransferPictures" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="TransferPositionCity" Type="int" Nullable="false" />
+          <Property Name="TransferPositionCountry" Type="int" Nullable="false" />
+          <Property Name="TransferGender" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TransferName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TransferSpecies" Type="int" Nullable="false" />
+          <Property Name="TransferNeuter" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TransferSituation" Type="nvarchar" MaxLength="200" />
+          <Property Name="TransferRequest" Type="nvarchar(max)" />
+          <Property Name="TransferContactWay" Type="varchar" MaxLength="200" />
+          <Property Name="TransferContactPerson" Type="nvarchar" MaxLength="200" />
+          <Property Name="Created_At" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__tBlog__BlogMembe__33D4B598">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+          <End Role="tBlog" Type="Self.tBlog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="tBlog">
+              <PropertyRef Name="BlogMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tComment__Commen__49C3F6B7">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+          <End Role="tComment" Type="Self.tComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="tComment">
+              <PropertyRef Name="CommentMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tComment__Commen__4AB81AF0">
+          <End Role="tRescue" Type="Self.tRescue" Multiplicity="1" />
+          <End Role="tComment" Type="Self.tComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tRescue">
+              <PropertyRef Name="RescueID" />
+            </Principal>
+            <Dependent Role="tComment">
+              <PropertyRef Name="CommentRescueID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tRescue__RescueM__2D27B809">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+          <End Role="tRescue" Type="Self.tRescue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="tRescue">
+              <PropertyRef Name="RescueMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tRescue__RescueP__2F10007B">
+          <End Role="tPosition" Type="Self.tPosition" Multiplicity="1" />
+          <End Role="tRescue" Type="Self.tRescue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tPosition">
+              <PropertyRef Name="positionID" />
+            </Principal>
+            <Dependent Role="tRescue">
+              <PropertyRef Name="RescuePositionCity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tRescue__RescueP__300424B4">
+          <End Role="tPosition" Type="Self.tPosition" Multiplicity="1" />
+          <End Role="tRescue" Type="Self.tRescue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tPosition">
+              <PropertyRef Name="positionID" />
+            </Principal>
+            <Dependent Role="tRescue">
+              <PropertyRef Name="RescuePositionCountry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tRescue__RescueS__2E1BDC42">
+          <End Role="tSpecies" Type="Self.tSpecies" Multiplicity="1" />
+          <End Role="tRescue" Type="Self.tRescue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tSpecies">
+              <PropertyRef Name="SpeciesID" />
+            </Principal>
+            <Dependent Role="tRescue">
+              <PropertyRef Name="RescueSpecies" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tTransfer__Trans__3F466844">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+          <End Role="tTransfer" Type="Self.tTransfer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="tTransfer">
+              <PropertyRef Name="TransferMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tTransfer__Trans__403A8C7D">
+          <End Role="tSpecies" Type="Self.tSpecies" Multiplicity="1" />
+          <End Role="tTransfer" Type="Self.tTransfer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tSpecies">
+              <PropertyRef Name="SpeciesID" />
+            </Principal>
+            <Dependent Role="tTransfer">
+              <PropertyRef Name="TransferSpecies" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tTransfer__Trans__412EB0B6">
+          <End Role="tPosition" Type="Self.tPosition" Multiplicity="1" />
+          <End Role="tTransfer" Type="Self.tTransfer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tPosition">
+              <PropertyRef Name="positionID" />
+            </Principal>
+            <Dependent Role="tTransfer">
+              <PropertyRef Name="TransferPositionCity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tTransfer__Trans__4222D4EF">
+          <End Role="tPosition" Type="Self.tPosition" Multiplicity="1" />
+          <End Role="tTransfer" Type="Self.tTransfer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tPosition">
+              <PropertyRef Name="positionID" />
+            </Principal>
+            <Dependent Role="tTransfer">
+              <PropertyRef Name="TransferPositionCountry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SaveAnimalsModelStoreContainer">
+          <EntitySet Name="tBlog" EntityType="Self.tBlog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tComment" EntityType="Self.tComment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tMember" EntityType="Self.tMember" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tPosition" EntityType="Self.tPosition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tRescue" EntityType="Self.tRescue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tSpecies" EntityType="Self.tSpecies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tTransfer" EntityType="Self.tTransfer" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tBlog__BlogMembe__33D4B598" Association="Self.FK__tBlog__BlogMembe__33D4B598">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tBlog" EntitySet="tBlog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tComment__Commen__49C3F6B7" Association="Self.FK__tComment__Commen__49C3F6B7">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tComment" EntitySet="tComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tComment__Commen__4AB81AF0" Association="Self.FK__tComment__Commen__4AB81AF0">
+            <End Role="tRescue" EntitySet="tRescue" />
+            <End Role="tComment" EntitySet="tComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tRescue__RescueM__2D27B809" Association="Self.FK__tRescue__RescueM__2D27B809">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tRescue" EntitySet="tRescue" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tRescue__RescueP__2F10007B" Association="Self.FK__tRescue__RescueP__2F10007B">
+            <End Role="tPosition" EntitySet="tPosition" />
+            <End Role="tRescue" EntitySet="tRescue" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tRescue__RescueP__300424B4" Association="Self.FK__tRescue__RescueP__300424B4">
+            <End Role="tPosition" EntitySet="tPosition" />
+            <End Role="tRescue" EntitySet="tRescue" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tRescue__RescueS__2E1BDC42" Association="Self.FK__tRescue__RescueS__2E1BDC42">
+            <End Role="tSpecies" EntitySet="tSpecies" />
+            <End Role="tRescue" EntitySet="tRescue" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tTransfer__Trans__3F466844" Association="Self.FK__tTransfer__Trans__3F466844">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tTransfer" EntitySet="tTransfer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tTransfer__Trans__403A8C7D" Association="Self.FK__tTransfer__Trans__403A8C7D">
+            <End Role="tSpecies" EntitySet="tSpecies" />
+            <End Role="tTransfer" EntitySet="tTransfer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tTransfer__Trans__412EB0B6" Association="Self.FK__tTransfer__Trans__412EB0B6">
+            <End Role="tPosition" EntitySet="tPosition" />
+            <End Role="tTransfer" EntitySet="tTransfer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tTransfer__Trans__4222D4EF" Association="Self.FK__tTransfer__Trans__4222D4EF">
+            <End Role="tPosition" EntitySet="tPosition" />
+            <End Role="tTransfer" EntitySet="tTransfer" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SaveAnimalsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tMember">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MemberAccount" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MemberPassword" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Created_At" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="tRescue" Relationship="Self.FK__tRescue__RescueM__6EF57B66" FromRole="tMember" ToRole="tRescue" />
+          <NavigationProperty Name="tTransfer" Relationship="SaveAnimalsModel.FK__tTransfer__Trans__3F466844" FromRole="tMember" ToRole="tTransfer" />
+          <NavigationProperty Name="tBlog" Relationship="SaveAnimalsModel.FK__tBlog__BlogMembe__33D4B598" FromRole="tMember" ToRole="tBlog" />
+          <NavigationProperty Name="tComment" Relationship="SaveAnimalsModel.FK__tComment__Commen__49C3F6B7" FromRole="tMember" ToRole="tComment" />
+        </EntityType>
+        <EntityType Name="tPosition">
+          <Key>
+            <PropertyRef Name="positionID" />
+          </Key>
+          <Property Name="positionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="positionBelong" Type="Int32" Nullable="false" />
+          <Property Name="positionPosition" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tRescue" Relationship="Self.FK__tRescue__RescueP__70DDC3D8" FromRole="tPosition" ToRole="tRescue" />
+          <NavigationProperty Name="tRescue1" Relationship="Self.FK__tRescue__RescueP__71D1E811" FromRole="tPosition" ToRole="tRescue" />
+          <NavigationProperty Name="tTransfer" Relationship="SaveAnimalsModel.FK__tTransfer__Trans__412EB0B6" FromRole="tPosition" ToRole="tTransfer" />
+          <NavigationProperty Name="tTransfer1" Relationship="SaveAnimalsModel.FK__tTransfer__Trans__4222D4EF" FromRole="tPosition" ToRole="tTransfer" />
+          </EntityType>
+        <EntityType Name="tRescue">
+          <Key>
+            <PropertyRef Name="RescueID" />
+          </Key>
+          <Property Name="RescueID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RescueMemberID" Type="Int32" Nullable="false" />
+          <Property Name="RescueTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ResCueDone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RescuePictures" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RescuePositionCity" Type="Int32" Nullable="false" />
+          <Property Name="RescuePositionCountry" Type="Int32" Nullable="false" />
+          <Property Name="RescueEvent" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RescueSpecies" Type="Int32" Nullable="false" />
+          <Property Name="RescueProgress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Created_At" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="tMember" Relationship="Self.FK__tRescue__RescueM__6EF57B66" FromRole="tRescue" ToRole="tMember" />
+          <NavigationProperty Name="tPosition" Relationship="Self.FK__tRescue__RescueP__70DDC3D8" FromRole="tRescue" ToRole="tPosition" />
+          <NavigationProperty Name="tPosition1" Relationship="Self.FK__tRescue__RescueP__71D1E811" FromRole="tRescue" ToRole="tPosition" />
+          <NavigationProperty Name="tSpecies" Relationship="Self.FK__tRescue__RescueS__6FE99F9F" FromRole="tRescue" ToRole="tSpecies" />
+          <NavigationProperty Name="tComment" Relationship="SaveAnimalsModel.FK__tComment__Commen__4AB81AF0" FromRole="tRescue" ToRole="tComment" />
+        </EntityType>
+        <EntityType Name="tSpecies">
+          <Key>
+            <PropertyRef Name="SpeciesID" />
+          </Key>
+          <Property Name="SpeciesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SpeciesName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tRescue" Relationship="Self.FK__tRescue__RescueS__6FE99F9F" FromRole="tSpecies" ToRole="tRescue" />
+          <NavigationProperty Name="tTransfer" Relationship="SaveAnimalsModel.FK__tTransfer__Trans__403A8C7D" FromRole="tSpecies" ToRole="tTransfer" />
+        </EntityType>
+        <Association Name="FK__tRescue__RescueM__6EF57B66">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+          <End Role="tRescue" Type="Self.tRescue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="tRescue">
+              <PropertyRef Name="RescueMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tRescue__RescueP__70DDC3D8">
+          <End Role="tPosition" Type="Self.tPosition" Multiplicity="1" />
+          <End Role="tRescue" Type="Self.tRescue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tPosition">
+              <PropertyRef Name="positionID" />
+            </Principal>
+            <Dependent Role="tRescue">
+              <PropertyRef Name="RescuePositionCity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tRescue__RescueP__71D1E811">
+          <End Role="tPosition" Type="Self.tPosition" Multiplicity="1" />
+          <End Role="tRescue" Type="Self.tRescue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tPosition">
+              <PropertyRef Name="positionID" />
+            </Principal>
+            <Dependent Role="tRescue">
+              <PropertyRef Name="RescuePositionCountry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tRescue__RescueS__6FE99F9F">
+          <End Role="tSpecies" Type="Self.tSpecies" Multiplicity="1" />
+          <End Role="tRescue" Type="Self.tRescue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tSpecies">
+              <PropertyRef Name="SpeciesID" />
+            </Principal>
+            <Dependent Role="tRescue">
+              <PropertyRef Name="RescueSpecies" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SaveAnimalsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tMember" EntityType="Self.tMember" />
+          <EntitySet Name="tPosition" EntityType="Self.tPosition" />
+          <EntitySet Name="tRescue" EntityType="Self.tRescue" />
+          <EntitySet Name="tSpecies" EntityType="Self.tSpecies" />
+          <AssociationSet Name="FK__tRescue__RescueM__6EF57B66" Association="Self.FK__tRescue__RescueM__6EF57B66">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tRescue" EntitySet="tRescue" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tRescue__RescueP__70DDC3D8" Association="Self.FK__tRescue__RescueP__70DDC3D8">
+            <End Role="tPosition" EntitySet="tPosition" />
+            <End Role="tRescue" EntitySet="tRescue" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tRescue__RescueP__71D1E811" Association="Self.FK__tRescue__RescueP__71D1E811">
+            <End Role="tPosition" EntitySet="tPosition" />
+            <End Role="tRescue" EntitySet="tRescue" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tRescue__RescueS__6FE99F9F" Association="Self.FK__tRescue__RescueS__6FE99F9F">
+            <End Role="tSpecies" EntitySet="tSpecies" />
+            <End Role="tRescue" EntitySet="tRescue" />
+          </AssociationSet>
+          <EntitySet Name="tTransfer" EntityType="SaveAnimalsModel.tTransfer" />
+          <AssociationSet Name="FK__tTransfer__Trans__3F466844" Association="SaveAnimalsModel.FK__tTransfer__Trans__3F466844">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tTransfer" EntitySet="tTransfer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tTransfer__Trans__412EB0B6" Association="SaveAnimalsModel.FK__tTransfer__Trans__412EB0B6">
+            <End Role="tPosition" EntitySet="tPosition" />
+            <End Role="tTransfer" EntitySet="tTransfer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tTransfer__Trans__4222D4EF" Association="SaveAnimalsModel.FK__tTransfer__Trans__4222D4EF">
+            <End Role="tPosition" EntitySet="tPosition" />
+            <End Role="tTransfer" EntitySet="tTransfer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tTransfer__Trans__403A8C7D" Association="SaveAnimalsModel.FK__tTransfer__Trans__403A8C7D">
+            <End Role="tSpecies" EntitySet="tSpecies" />
+            <End Role="tTransfer" EntitySet="tTransfer" />
+          </AssociationSet>
+          <EntitySet Name="tBlog" EntityType="SaveAnimalsModel.tBlog" />
+          <AssociationSet Name="FK__tBlog__BlogMembe__33D4B598" Association="SaveAnimalsModel.FK__tBlog__BlogMembe__33D4B598">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tBlog" EntitySet="tBlog" />
+          </AssociationSet>
+          <EntitySet Name="tComment" EntityType="SaveAnimalsModel.tComment" />
+          <AssociationSet Name="FK__tComment__Commen__49C3F6B7" Association="SaveAnimalsModel.FK__tComment__Commen__49C3F6B7">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tComment" EntitySet="tComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tComment__Commen__4AB81AF0" Association="SaveAnimalsModel.FK__tComment__Commen__4AB81AF0">
+            <End Role="tRescue" EntitySet="tRescue" />
+            <End Role="tComment" EntitySet="tComment" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="tTransfer">
+          <Key>
+            <PropertyRef Name="TransferID" />
+          </Key>
+          <Property Name="TransferID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransferMemberID" Type="Int32" Nullable="false" />
+          <Property Name="TransferDone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TransferPictures" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TransferPositionCity" Type="Int32" Nullable="false" />
+          <Property Name="TransferPositionCountry" Type="Int32" Nullable="false" />
+          <Property Name="TransferGender" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TransferName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TransferSpecies" Type="Int32" Nullable="false" />
+          <Property Name="TransferNeuter" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TransferSituation" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TransferRequest" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TransferContactWay" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="TransferContactPerson" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Created_At" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="tMember" Relationship="SaveAnimalsModel.FK__tTransfer__Trans__3F466844" FromRole="tTransfer" ToRole="tMember" />
+          <NavigationProperty Name="tPosition" Relationship="SaveAnimalsModel.FK__tTransfer__Trans__412EB0B6" FromRole="tTransfer" ToRole="tPosition" />
+          <NavigationProperty Name="tPosition1" Relationship="SaveAnimalsModel.FK__tTransfer__Trans__4222D4EF" FromRole="tTransfer" ToRole="tPosition" />
+          <NavigationProperty Name="tSpecies" Relationship="SaveAnimalsModel.FK__tTransfer__Trans__403A8C7D" FromRole="tTransfer" ToRole="tSpecies" />
+        </EntityType>
+        <Association Name="FK__tTransfer__Trans__3F466844">
+          <End Type="SaveAnimalsModel.tMember" Role="tMember" Multiplicity="1" />
+          <End Type="SaveAnimalsModel.tTransfer" Role="tTransfer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="tTransfer">
+              <PropertyRef Name="TransferMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tTransfer__Trans__412EB0B6">
+          <End Type="SaveAnimalsModel.tPosition" Role="tPosition" Multiplicity="1" />
+          <End Type="SaveAnimalsModel.tTransfer" Role="tTransfer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tPosition">
+              <PropertyRef Name="positionID" />
+            </Principal>
+            <Dependent Role="tTransfer">
+              <PropertyRef Name="TransferPositionCity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tTransfer__Trans__4222D4EF">
+          <End Type="SaveAnimalsModel.tPosition" Role="tPosition" Multiplicity="1" />
+          <End Type="SaveAnimalsModel.tTransfer" Role="tTransfer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tPosition">
+              <PropertyRef Name="positionID" />
+            </Principal>
+            <Dependent Role="tTransfer">
+              <PropertyRef Name="TransferPositionCountry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tTransfer__Trans__403A8C7D">
+          <End Type="SaveAnimalsModel.tSpecies" Role="tSpecies" Multiplicity="1" />
+          <End Type="SaveAnimalsModel.tTransfer" Role="tTransfer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tSpecies">
+              <PropertyRef Name="SpeciesID" />
+            </Principal>
+            <Dependent Role="tTransfer">
+              <PropertyRef Name="TransferSpecies" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tBlog">
+          <Key>
+            <PropertyRef Name="BlogID" />
+          </Key>
+          <Property Name="BlogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlogMemberID" Type="Int32" Nullable="false" />
+          <Property Name="BlogCategory" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BlogTitle" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="BlogContent" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Created_At" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="tMember" Relationship="SaveAnimalsModel.FK__tBlog__BlogMembe__33D4B598" FromRole="tBlog" ToRole="tMember" />
+        </EntityType>
+        <Association Name="FK__tBlog__BlogMembe__33D4B598">
+          <End Type="SaveAnimalsModel.tMember" Role="tMember" Multiplicity="1" />
+          <End Type="SaveAnimalsModel.tBlog" Role="tBlog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="tBlog">
+              <PropertyRef Name="BlogMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tComment">
+          <Key>
+            <PropertyRef Name="CommentID" />
+          </Key>
+          <Property Name="CommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CommentMemberID" Type="Int32" Nullable="false" />
+          <Property Name="CommentRescueID" Type="Int32" Nullable="false" />
+          <Property Name="CommentContent" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Created_At" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tMember" Relationship="SaveAnimalsModel.FK__tComment__Commen__49C3F6B7" FromRole="tComment" ToRole="tMember" />
+          <NavigationProperty Name="tRescue" Relationship="SaveAnimalsModel.FK__tComment__Commen__4AB81AF0" FromRole="tComment" ToRole="tRescue" />
+        </EntityType>
+        <Association Name="FK__tComment__Commen__49C3F6B7">
+          <End Type="SaveAnimalsModel.tMember" Role="tMember" Multiplicity="1" />
+          <End Type="SaveAnimalsModel.tComment" Role="tComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="tComment">
+              <PropertyRef Name="CommentMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tComment__Commen__4AB81AF0">
+          <End Type="SaveAnimalsModel.tRescue" Role="tRescue" Multiplicity="1" />
+          <End Type="SaveAnimalsModel.tComment" Role="tComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tRescue">
+              <PropertyRef Name="RescueID" />
+            </Principal>
+            <Dependent Role="tComment">
+              <PropertyRef Name="CommentRescueID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SaveAnimalsModelStoreContainer" CdmEntityContainer="SaveAnimalsEntities">
+          <EntitySetMapping Name="tMember">
+            <EntityTypeMapping TypeName="SaveAnimalsModel.tMember">
+              <MappingFragment StoreEntitySet="tMember">
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="MemberName" ColumnName="MemberName" />
+                <ScalarProperty Name="MemberAccount" ColumnName="MemberAccount" />
+                <ScalarProperty Name="MemberPassword" ColumnName="MemberPassword" />
+                <ScalarProperty Name="Created_At" ColumnName="Created_At" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tPosition">
+            <EntityTypeMapping TypeName="SaveAnimalsModel.tPosition">
+              <MappingFragment StoreEntitySet="tPosition">
+                <ScalarProperty Name="positionID" ColumnName="positionID" />
+                <ScalarProperty Name="positionBelong" ColumnName="positionBelong" />
+                <ScalarProperty Name="positionPosition" ColumnName="positionPosition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tRescue">
+            <EntityTypeMapping TypeName="SaveAnimalsModel.tRescue">
+              <MappingFragment StoreEntitySet="tRescue">
+                <ScalarProperty Name="RescueID" ColumnName="RescueID" />
+                <ScalarProperty Name="RescueMemberID" ColumnName="RescueMemberID" />
+                <ScalarProperty Name="RescueTitle" ColumnName="RescueTitle" />
+                <ScalarProperty Name="ResCueDone" ColumnName="ResCueDone" />
+                <ScalarProperty Name="RescuePictures" ColumnName="RescuePictures" />
+                <ScalarProperty Name="RescuePositionCity" ColumnName="RescuePositionCity" />
+                <ScalarProperty Name="RescuePositionCountry" ColumnName="RescuePositionCountry" />
+                <ScalarProperty Name="RescueEvent" ColumnName="RescueEvent" />
+                <ScalarProperty Name="RescueSpecies" ColumnName="RescueSpecies" />
+                <ScalarProperty Name="RescueProgress" ColumnName="RescueProgress" />
+                <ScalarProperty Name="Created_At" ColumnName="Created_At" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tSpecies">
+            <EntityTypeMapping TypeName="SaveAnimalsModel.tSpecies">
+              <MappingFragment StoreEntitySet="tSpecies">
+                <ScalarProperty Name="SpeciesID" ColumnName="SpeciesID" />
+                <ScalarProperty Name="SpeciesName" ColumnName="SpeciesName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tTransfer">
+            <EntityTypeMapping TypeName="SaveAnimalsModel.tTransfer">
+              <MappingFragment StoreEntitySet="tTransfer">
+                <ScalarProperty Name="Created_At" ColumnName="Created_At" />
+                <ScalarProperty Name="TransferContactPerson" ColumnName="TransferContactPerson" />
+                <ScalarProperty Name="TransferContactWay" ColumnName="TransferContactWay" />
+                <ScalarProperty Name="TransferRequest" ColumnName="TransferRequest" />
+                <ScalarProperty Name="TransferSituation" ColumnName="TransferSituation" />
+                <ScalarProperty Name="TransferNeuter" ColumnName="TransferNeuter" />
+                <ScalarProperty Name="TransferSpecies" ColumnName="TransferSpecies" />
+                <ScalarProperty Name="TransferName" ColumnName="TransferName" />
+                <ScalarProperty Name="TransferGender" ColumnName="TransferGender" />
+                <ScalarProperty Name="TransferPositionCountry" ColumnName="TransferPositionCountry" />
+                <ScalarProperty Name="TransferPositionCity" ColumnName="TransferPositionCity" />
+                <ScalarProperty Name="TransferPictures" ColumnName="TransferPictures" />
+                <ScalarProperty Name="TransferDone" ColumnName="TransferDone" />
+                <ScalarProperty Name="TransferMemberID" ColumnName="TransferMemberID" />
+                <ScalarProperty Name="TransferID" ColumnName="TransferID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tBlog">
+            <EntityTypeMapping TypeName="SaveAnimalsModel.tBlog">
+              <MappingFragment StoreEntitySet="tBlog">
+                <ScalarProperty Name="Created_At" ColumnName="Created_At" />
+                <ScalarProperty Name="BlogContent" ColumnName="BlogContent" />
+                <ScalarProperty Name="BlogTitle" ColumnName="BlogTitle" />
+                <ScalarProperty Name="BlogCategory" ColumnName="BlogCategory" />
+                <ScalarProperty Name="BlogMemberID" ColumnName="BlogMemberID" />
+                <ScalarProperty Name="BlogID" ColumnName="BlogID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tComment">
+            <EntityTypeMapping TypeName="SaveAnimalsModel.tComment">
+              <MappingFragment StoreEntitySet="tComment">
+                <ScalarProperty Name="Created_At" ColumnName="Created_At" />
+                <ScalarProperty Name="CommentContent" ColumnName="CommentContent" />
+                <ScalarProperty Name="CommentRescueID" ColumnName="CommentRescueID" />
+                <ScalarProperty Name="CommentMemberID" ColumnName="CommentMemberID" />
+                <ScalarProperty Name="CommentID" ColumnName="CommentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
