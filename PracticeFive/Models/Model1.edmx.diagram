@@ -23,6 +23,9 @@
         <EntityTypeShape EntityType="SaveAnimalsModel.tComment" Width="1.5" PointX="10.75" PointY="5.375" />
         <AssociationConnector Association="SaveAnimalsModel.FK__tComment__Commen__49C3F6B7" />
         <AssociationConnector Association="SaveAnimalsModel.FK__tComment__Commen__4AB81AF0" />
+        <EntityTypeShape EntityType="SaveAnimalsModel.FollowRescue" Width="1.5" PointX="12.875" PointY="2.5" />
+        <AssociationConnector Association="SaveAnimalsModel.FK__FollowRes__Follo__619B8048" />
+        <AssociationConnector Association="SaveAnimalsModel.FK__FollowRes__Follo__628FA481" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

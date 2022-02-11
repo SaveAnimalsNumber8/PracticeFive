@@ -59,7 +59,7 @@
         </div>
     </div>
 </section>
-
+<i class="fas fa-user-plus">@Html.ActionLink("加入追蹤", "AddtoFollowrescue", "RescueMember", new { id = Model.RescueID }, null)</i>
 @if (Convert.ToInt32(Session["UserID"]) == Model.RescueMemberID)
 {
 <p>@Html.ActionLink("編輯", "Edit", "RescueMember", new { id = Model.RescueID }, null)</p>

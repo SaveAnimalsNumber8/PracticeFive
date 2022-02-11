@@ -5,6 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="SaveAnimalsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FollowRescue">
+          <Key>
+            <PropertyRef Name="FollowID" />
+          </Key>
+          <Property Name="FollowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FollowMemberID" Type="int" Nullable="false" />
+          <Property Name="FollowResueID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="tBlog">
           <Key>
             <PropertyRef Name="BlogID" />
@@ -87,6 +95,34 @@
           <Property Name="TransferContactPerson" Type="nvarchar" MaxLength="200" />
           <Property Name="Created_At" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
+        <Association Name="FK__FollowRes__Follo__619B8048">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FollowRescue" Type="Self.FollowRescue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="FollowRescue">
+              <PropertyRef Name="FollowMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FollowRes__Follo__628FA481">
+          <End Role="tRescue" Type="Self.tRescue" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FollowRescue" Type="Self.FollowRescue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tRescue">
+              <PropertyRef Name="RescueID" />
+            </Principal>
+            <Dependent Role="FollowRescue">
+              <PropertyRef Name="FollowResueID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__tBlog__BlogMembe__33D4B598">
           <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
           <End Role="tBlog" Type="Self.tBlog" Multiplicity="*" />
@@ -99,7 +135,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tComment__Commen__49C3F6B7">
+        <Association Name="FK__tComment__Commen__5DCAEF64">
           <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
           <End Role="tComment" Type="Self.tComment" Multiplicity="*" />
           <ReferentialConstraint>
@@ -111,8 +147,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tComment__Commen__4AB81AF0">
-          <End Role="tRescue" Type="Self.tRescue" Multiplicity="1" />
+        <Association Name="FK__tComment__Commen__5EBF139D">
+          <End Role="tRescue" Type="Self.tRescue" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="tComment" Type="Self.tComment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tRescue">
@@ -220,6 +258,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="SaveAnimalsModelStoreContainer">
+          <EntitySet Name="FollowRescue" EntityType="Self.FollowRescue" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tBlog" EntityType="Self.tBlog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tComment" EntityType="Self.tComment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tMember" EntityType="Self.tMember" Schema="dbo" store:Type="Tables" />
@@ -227,15 +266,23 @@
           <EntitySet Name="tRescue" EntityType="Self.tRescue" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tSpecies" EntityType="Self.tSpecies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tTransfer" EntityType="Self.tTransfer" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__FollowRes__Follo__619B8048" Association="Self.FK__FollowRes__Follo__619B8048">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="FollowRescue" EntitySet="FollowRescue" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FollowRes__Follo__628FA481" Association="Self.FK__FollowRes__Follo__628FA481">
+            <End Role="tRescue" EntitySet="tRescue" />
+            <End Role="FollowRescue" EntitySet="FollowRescue" />
+          </AssociationSet>
           <AssociationSet Name="FK__tBlog__BlogMembe__33D4B598" Association="Self.FK__tBlog__BlogMembe__33D4B598">
             <End Role="tMember" EntitySet="tMember" />
             <End Role="tBlog" EntitySet="tBlog" />
           </AssociationSet>
-          <AssociationSet Name="FK__tComment__Commen__49C3F6B7" Association="Self.FK__tComment__Commen__49C3F6B7">
+          <AssociationSet Name="FK__tComment__Commen__5DCAEF64" Association="Self.FK__tComment__Commen__5DCAEF64">
             <End Role="tMember" EntitySet="tMember" />
             <End Role="tComment" EntitySet="tComment" />
           </AssociationSet>
-          <AssociationSet Name="FK__tComment__Commen__4AB81AF0" Association="Self.FK__tComment__Commen__4AB81AF0">
+          <AssociationSet Name="FK__tComment__Commen__5EBF139D" Association="Self.FK__tComment__Commen__5EBF139D">
             <End Role="tRescue" EntitySet="tRescue" />
             <End Role="tComment" EntitySet="tComment" />
           </AssociationSet>
@@ -289,6 +336,7 @@
           <NavigationProperty Name="tTransfer" Relationship="SaveAnimalsModel.FK__tTransfer__Trans__3F466844" FromRole="tMember" ToRole="tTransfer" />
           <NavigationProperty Name="tBlog" Relationship="SaveAnimalsModel.FK__tBlog__BlogMembe__33D4B598" FromRole="tMember" ToRole="tBlog" />
           <NavigationProperty Name="tComment" Relationship="SaveAnimalsModel.FK__tComment__Commen__49C3F6B7" FromRole="tMember" ToRole="tComment" />
+          <NavigationProperty Name="FollowRescue" Relationship="SaveAnimalsModel.FK__FollowRes__Follo__619B8048" FromRole="tMember" ToRole="FollowRescue" />
         </EntityType>
         <EntityType Name="tPosition">
           <Key>
@@ -322,6 +370,7 @@
           <NavigationProperty Name="tPosition1" Relationship="Self.FK__tRescue__RescueP__71D1E811" FromRole="tRescue" ToRole="tPosition" />
           <NavigationProperty Name="tSpecies" Relationship="Self.FK__tRescue__RescueS__6FE99F9F" FromRole="tRescue" ToRole="tSpecies" />
           <NavigationProperty Name="tComment" Relationship="SaveAnimalsModel.FK__tComment__Commen__4AB81AF0" FromRole="tRescue" ToRole="tComment" />
+          <NavigationProperty Name="FollowRescue" Relationship="SaveAnimalsModel.FK__FollowRes__Follo__628FA481" FromRole="tRescue" ToRole="FollowRescue" />
         </EntityType>
         <EntityType Name="tSpecies">
           <Key>
@@ -431,6 +480,15 @@
           <AssociationSet Name="FK__tComment__Commen__4AB81AF0" Association="SaveAnimalsModel.FK__tComment__Commen__4AB81AF0">
             <End Role="tRescue" EntitySet="tRescue" />
             <End Role="tComment" EntitySet="tComment" />
+          </AssociationSet>
+          <EntitySet Name="FollowRescue" EntityType="SaveAnimalsModel.FollowRescue" />
+          <AssociationSet Name="FK__FollowRes__Follo__619B8048" Association="SaveAnimalsModel.FK__FollowRes__Follo__619B8048">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="FollowRescue" EntitySet="FollowRescue" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FollowRes__Follo__628FA481" Association="SaveAnimalsModel.FK__FollowRes__Follo__628FA481">
+            <End Role="tRescue" EntitySet="tRescue" />
+            <End Role="FollowRescue" EntitySet="FollowRescue" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="tTransfer">
@@ -565,6 +623,44 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="FollowRescue">
+          <Key>
+            <PropertyRef Name="FollowID" />
+          </Key>
+          <Property Name="FollowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FollowMemberID" Type="Int32" Nullable="false" />
+          <Property Name="FollowResueID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tMember" Relationship="SaveAnimalsModel.FK__FollowRes__Follo__619B8048" FromRole="FollowRescue" ToRole="tMember" />
+          <NavigationProperty Name="tRescue" Relationship="SaveAnimalsModel.FK__FollowRes__Follo__628FA481" FromRole="FollowRescue" ToRole="tRescue" />
+        </EntityType>
+        <Association Name="FK__FollowRes__Follo__619B8048">
+          <End Type="SaveAnimalsModel.tMember" Role="tMember" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SaveAnimalsModel.FollowRescue" Role="FollowRescue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="FollowRescue">
+              <PropertyRef Name="FollowMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FollowRes__Follo__628FA481">
+          <End Type="SaveAnimalsModel.tRescue" Role="tRescue" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SaveAnimalsModel.FollowRescue" Role="FollowRescue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tRescue">
+              <PropertyRef Name="RescueID" />
+            </Principal>
+            <Dependent Role="FollowRescue">
+              <PropertyRef Name="FollowResueID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -657,6 +753,15 @@
                 <ScalarProperty Name="CommentRescueID" ColumnName="CommentRescueID" />
                 <ScalarProperty Name="CommentMemberID" ColumnName="CommentMemberID" />
                 <ScalarProperty Name="CommentID" ColumnName="CommentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FollowRescue">
+            <EntityTypeMapping TypeName="SaveAnimalsModel.FollowRescue">
+              <MappingFragment StoreEntitySet="FollowRescue">
+                <ScalarProperty Name="FollowResueID" ColumnName="FollowResueID" />
+                <ScalarProperty Name="FollowMemberID" ColumnName="FollowMemberID" />
+                <ScalarProperty Name="FollowID" ColumnName="FollowID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

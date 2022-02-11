@@ -21,6 +21,7 @@ namespace PracticeFive.Models
             this.tTransfer = new HashSet<tTransfer>();
             this.tBlog = new HashSet<tBlog>();
             this.tComment = new HashSet<tComment>();
+            this.FollowRescue = new HashSet<FollowRescue>();
         }
     
         public int MemberID { get; set; }
@@ -37,5 +38,7 @@ namespace PracticeFive.Models
         public virtual ICollection<tBlog> tBlog { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tComment> tComment { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FollowRescue> FollowRescue { get; set; }
     }
 }
