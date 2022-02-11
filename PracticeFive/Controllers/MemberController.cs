@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PracticeFive.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,6 +10,7 @@ namespace PracticeFive.Controllers
 {
     public class MemberController : Controller
     {
+        SaveAnimalsEntities sadb = new SaveAnimalsEntities();
         // GET: Member
         public ActionResult Index()
         {
@@ -25,5 +27,7 @@ namespace PracticeFive.Controllers
         {
             return View();
         }
+
+
     }
 }

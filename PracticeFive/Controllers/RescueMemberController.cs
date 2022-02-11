@@ -2,6 +2,7 @@
 using PracticeFive.Models;
 using PracticeFive.ViewModel;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -20,6 +21,7 @@ namespace PracticeFive.Controllers
         {
             return RedirectToAction("Index", "Member");
         }
+
 
         public ActionResult Rescue()
         {
@@ -157,9 +159,21 @@ namespace PracticeFive.Controllers
         }
 
 
-        public ActionResult List()
+        public ActionResult List(string RescueTitlesearch)
         {
-            var rescueList = sadb.tRescue.OrderByDescending(sadb => sadb.Created_At).ToList();
+            var rescueTitleCatageory = from d in sadb.tRescue select d.RescueTitle;
+            var rescueTitleList = new List<string>();
+
+            rescueTitleList.AddRange(rescueTitleCatageory.Distinct());
+            ViewBag.rescueTitleList = rescueTitleList;
+
+
+            var rescueList = from m in sadb.tRescue.OrderByDescending(sadb => sadb.Created_At) select m;
+
+            if (!string.IsNullOrEmpty(RescueTitlesearch))
+            {
+                rescueList = rescueList.Where(x => x.RescueTitle == RescueTitlesearch);
+            }
             return View(rescueList);
         }
 
@@ -207,15 +221,23 @@ namespace PracticeFive.Controllers
             return RedirectToAction("More", "RescueMember");
             //TODO:無法顯示回原本的這筆More
         }
-        public ActionResult AddtoFollowrescue(int id)
+        public ActionResult AddtoFollowrescue(FollowRescue member,int id)
         {
             tRescue rescue = sadb.tRescue.FirstOrDefault(p => p.RescueID == id);
+       
             if (rescue != null)
             {
                 sadb.FollowRescue.Add(new FollowRescue() { FollowMemberID = Convert.ToInt32(Session["UserID"]), FollowResueID = id });
             }
             sadb.SaveChanges();
             return RedirectToAction("List", "RescueMember");
+        }
+        public ActionResult Rescuelist()
+        {
+            var Rescuelist = sadb.tRescue.AsEnumerable()
+                   .Where(x => x.RescueMemberID == Convert.ToInt32(Session["UserID"]))
+                   .ToList();
+            return View(Rescuelist);
         }
     }
 }

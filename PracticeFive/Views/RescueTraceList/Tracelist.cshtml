@@ -10,37 +10,39 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FollowID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FollowMemberID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tRescue.RescueEvent)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FollowID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FollowMemberID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tRescue.RescueEvent)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "DeleteFollow", new { id=item.FollowID })
-        </td>
-    </tr>
-}
-
+<table class="content-table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FollowID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FollowMemberID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tRescue.RescueEvent)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FollowID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FollowMemberID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tRescue.RescueEvent)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "DeleteFollow", new { id = item.FollowID })
+                </td>
+            </tr>
+        }
+        </tbody>
 </table>

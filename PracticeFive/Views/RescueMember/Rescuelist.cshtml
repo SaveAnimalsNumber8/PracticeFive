@@ -1,0 +1,84 @@
+﻿@model IEnumerable<PracticeFive.Models.tRescue>
+
+@{
+    ViewBag.Title = "Rescuelist";
+    Layout = "~/Views/Shared/_LayoutMember.cshtml";
+}
+
+<h2>Rescuelist</h2>
+
+<table class="content-table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RescueTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResCueDone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RescuePictures)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RescuePositionCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RescuePositionCountry)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RescueEvent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RescueSpecies)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RescueProgress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Created_At)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RescueTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ResCueDone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RescuePictures)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RescuePositionCity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RescuePositionCountry)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RescueEvent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RescueSpecies)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RescueProgress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Created_At)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+
+</table>

@@ -105,6 +105,7 @@
     <Content Include="Content\RescueList.css" />
     <Content Include="Content\rescueMoreDetails.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\Tracelist.css" />
     <Content Include="Content\SubPageLayoutVer2.css" />
     <Content Include="Content\TransferCard.css" />
     <Content Include="Global.asax" />
@@ -220,6 +221,7 @@
     <Content Include="Views\Transfer\List.cshtml" />
     <Content Include="Views\Transfer\More.cshtml" />
     <Content Include="Views\RescueTraceList\Tracelist.cshtml" />
+    <Content Include="Views\RescueMember\Rescuelist.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

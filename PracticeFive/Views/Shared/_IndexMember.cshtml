@@ -45,9 +45,9 @@
                     @Html.ActionLink("會員專區", "Profilo", "Member")
                     <ul class="subs">
                         <li class="submenu">@Html.ActionLink("基本資料", "Profilo", "Member")</li>
-                        <li class="submenu">@Html.ActionLink("通報清單", "RescueList", "Member")</li>
+                        <li class="submenu">@Html.ActionLink("通報清單", "Rescuelist", "RescueMember")</li>
                         <li class="submenu">@Html.ActionLink("送養清單", "TransferList", "Member")</li>
-                        <li class="submenu">@Html.ActionLink("追蹤清單", "TraceList", "Member")</li>
+                        <li class="submenu">@Html.ActionLink("追蹤清單", "Tracelist", "RescueTraceList")</li>
                         <li class="submenu">@Html.ActionLink("登出", "LogOut", "Member")</li>
                     </ul>
                 </li>
@@ -65,13 +65,10 @@
             @Html.ActionLink("了解詳情", "Login", "Home")
         </div>
     </section>
-
     <!-- about section -->
     <section class="about">
         @RenderBody();
     </section>
-
-
     <script src="~/Scripts/jquery-3.6.0.min.js"></script>
     <script src="~/Scripts/indexVer2.js"></script>
 </body>
