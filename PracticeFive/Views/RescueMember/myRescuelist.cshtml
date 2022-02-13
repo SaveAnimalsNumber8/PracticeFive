@@ -1,0 +1,71 @@
+﻿@model IEnumerable<PracticeFive.Models.tRescue>
+
+@{
+    ViewBag.Title = "myRescuelist";
+    Layout = "~/Views/Shared/_LayoutMember.cshtml";
+}
+<head>
+    <link rel="stylesheet" href="~/Content/Tracelist.css">
+</head>
+<div class="container">
+    <table class="content-table">
+        <thead>
+            <tr>
+                <th colspan="4">
+                    <i class="fas fa-dog"></i>我的通報清單
+                </th>
+                <th>
+                </th>
+                <th>
+                </th>
+                <th>
+                </th>
+                <th>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int count = 0;
+                foreach (var item in Model)
+                {
+                    count++;
+                    <tr>
+                        <td>
+                            @count
+                        </td>
+                        <td>
+                            <span class="circle-image">
+                                <img src="~/UpImg/@Html.DisplayFor(modelItem => item.RescuePictures)" alt="" />
+                            </span>
+                        </td>
+                        <td class="widthcontent">
+                            @Html.DisplayFor(modelItem => item.tSpecies.SpeciesName)
+                        </td>
+                        <td class="widthcontent300px">
+                            @Html.DisplayFor(modelItem => item.RescueEvent)
+                            <p>
+                                @Html.ActionLink("更多資訊", "More", new { id = item.RescueID })
+                            </p>
+                        </td>
+                        <td class="widthcontent">
+                            @Html.DisplayFor(modelItem => item.ResCueDone)
+                        </td>
+                        <td class="widthcontent">
+                            @Html.DisplayFor(modelItem => item.Created_At)
+                        </td>
+                        <td class="widthcontent150px">
+                            <p>@Html.ActionLink("編輯", "Edit", "RescueMember", new { id = item.RescueID }, new { @class = "btn" })</p>
+                        </td>
+                        <td class="widthcontent150px">
+                            <p>@Html.ActionLink("刪除", "Delete", "RescueMember", new { id = item.RescueID }, new { @class = "btn", onclick = "return confirm('確定要刪除嗎?')" })</p>
+                        </td>
+                    </tr>
+                }
+
+            }
+
+        </tbody>
+    </table>
+</div>
+

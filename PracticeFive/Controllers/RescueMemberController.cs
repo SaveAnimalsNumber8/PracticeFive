@@ -232,7 +232,7 @@ namespace PracticeFive.Controllers
             sadb.SaveChanges();
             return RedirectToAction("List", "RescueMember");
         }
-        public ActionResult Rescuelist()
+        public ActionResult myRescuelist()
         {
             var Rescuelist = sadb.tRescue.AsEnumerable()
                    .Where(x => x.RescueMemberID == Convert.ToInt32(Session["UserID"]))

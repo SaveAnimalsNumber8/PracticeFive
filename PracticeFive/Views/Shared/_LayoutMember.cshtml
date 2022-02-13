@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="~/Content/SubPageLayoutVer2.css">
     <link rel="stylesheet" href="~/Content/RescueList.css">
-    <link rel="stylesheet" href="~/Content/Tracelist.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="~/Scripts/jquery-3.6.0.min.js"></script>
 </head>
@@ -42,7 +42,7 @@
                     @Html.ActionLink("會員專區", "Profilo", "Member")
                     <ul class="subs">
                         <li class="submenu">@Html.ActionLink("基本資料", "Profilo", "Member")</li>
-                        <li class="submenu">@Html.ActionLink("通報清單", "Rescuelist", "RescueMember")</li>
+                        <li class="submenu">@Html.ActionLink("通報清單", "myRescuelist", "RescueMember")</li>
                         <li class="submenu">@Html.ActionLink("送養清單", "TransferList", "Member")</li>
                         <li class="submenu">@Html.ActionLink("追蹤清單", "Tracelist", "RescueTraceList")</li>
                         <li class="submenu">@Html.ActionLink("登出", "LogOut", "Member")</li>
