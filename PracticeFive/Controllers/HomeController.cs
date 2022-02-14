@@ -39,7 +39,7 @@ namespace PracticeFive.Controllers
             //使用Session變數記錄歡迎詞
             Session["UserID"] = member.MemberID;
             FormsAuthentication.RedirectFromLoginPage(MemberAccount, true);
-            return RedirectToAction("Index", "Member");
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]

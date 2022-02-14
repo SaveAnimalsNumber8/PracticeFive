@@ -11,25 +11,41 @@ namespace PracticeFive.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.Web;
+
     public partial class tTransfer
     {
+
         public int TransferID { get; set; }
         public int TransferMemberID { get; set; }
+        [Display(Name = "案件狀態")]
         public string TransferDone { get; set; }
+        [Display(Name = "送養照騙")]
         public string TransferPictures { get; set; }
+
+        public HttpPostedFileBase upImg { get; set; }
+        [Display(Name = "送養地區")]
         public int TransferPositionCity { get; set; }
         public int TransferPositionCountry { get; set; }
+        [Display(Name = "公的母的")]
         public string TransferGender { get; set; }
+        [Display(Name = "他吸引人的名字")]
         public string TransferName { get; set; }
+        [Display(Name = "他的種族")]
         public int TransferSpecies { get; set; }
+        [Display(Name = "結紮了沒")]
         public string TransferNeuter { get; set; }
+        [Display(Name = "他的現況")]
         public string TransferSituation { get; set; }
+        [Display(Name = "你希望認養人的條件是？")]
         public string TransferRequest { get; set; }
+        [Display(Name = "要怎麼聯絡送養人？")]
         public string TransferContactWay { get; set; }
+        [Display(Name = "送養人是誰？")]
         public string TransferContactPerson { get; set; }
         public System.DateTime Created_At { get; set; }
-    
+
         public virtual tMember tMember { get; set; }
         public virtual tPosition tPosition { get; set; }
         public virtual tPosition tPosition1 { get; set; }

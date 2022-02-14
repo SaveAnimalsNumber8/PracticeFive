@@ -17,6 +17,7 @@ namespace PracticeFive.Controllers
 
         public ActionResult LogOut()
         {
+            Session.Abandon();
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }

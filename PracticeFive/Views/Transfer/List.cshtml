@@ -7,7 +7,7 @@
 
 <link href="~/Content/TransferCard.css" rel="stylesheet" />
 
-<div class="searchNav">
+<div class="searchNav d-flex justify-content-center ">
     @using (Html.BeginForm())
     {
         <h4>送養物種:</h4>
@@ -17,48 +17,20 @@
     }
 </div>
 
-    <div class="containerSelf d-flex justify-content-center align-items-center">
-        @foreach (var item in Model)
-        {
-            <div class="card col-xxl-4 col-lg-3 col-md-6 col-sm-12">
-                <div class="imgBox">
-                    <img src="~/UpImg/@Html.DisplayFor(modelItem => item.TransferPictures)" alt="">
-                </div>
-                <div class="content">
-                    <h2>@Html.DisplayFor(modelItem => item.TransferName)</h2>
-                    <p class="position mb-10">@Html.DisplayFor(modelItem => item.tPosition.positionPosition)</p>
-                    <span class="position mb-10">@Html.DisplayFor(modelItem => item.tPosition1.positionPosition)</span>
-                    <p>
-                        @Html.DisplayFor(modelItem => item.TransferNeuter)
-                    </p>
-                    @Html.ActionLink("更多資訊", "More", new { id = item.TransferID })
-                </div>
+<div class="containerSelf d-flex justify-content-center align-items-center">
+    @foreach (var item in Model)
+    {
+        <div class="card col-xxl-4 col-lg-3 col-md-6 col-sm-12">
+            <div class="imgBox">
+                <img src="~/UpImg/@Html.DisplayFor(modelItem => item.TransferPictures)" alt="">
             </div>
-            <!--<div class="card col-xl-3 col-md-4 col-sm-6 p-3">
-                <div class="title mb-10">
-                    <h2>@Html.DisplayFor(modelItem => item.tSpecies.SpeciesName)</h2>-->
-                    @*@switch (item.TransferSpecies)
-                    {
-                        case "尋獲":<h2>尋獲</h2>
-                            break;
-                        case "走失": <h2>走失</h2>
-                            break;
-                        case "救援": <h2>救援</h2>
-                            break;
-                    }*@
-                <!--</div>
-                <div class="pic mb-10"><img src="~/UpImg/@Html.DisplayFor(modelItem => item.TransferPictures)" alt=""></div>
-                <div class="content mb-10">
-                    <h3 class="position mb-10">@Html.DisplayFor(modelItem => item.tPosition.positionPosition)</h3>
-                    <h3 class="position mb-10">@Html.DisplayFor(modelItem => item.tPosition1.positionPosition)</h3>
-                    <h4 class="time mb-10">@Html.DisplayFor(modelItem => item.TransferName)</h4>
-                    <p class="event mb-10">@Html.DisplayFor(modelItem => item.TransferNeuter)</p>
-
-                    <p class="event mb-10">@Html.DisplayFor(modelItem => item.TransferContactPerson)</p>
-                    <p class="event mb-10">@Html.DisplayFor(modelItem => item.TransferRequest)</p>
-                    <p class="time mb-10">@Html.DisplayFor(modelItem => item.Created_At)</p>
-                </div>
+            <div class="content">
+                <h2>@Html.DisplayFor(modelItem => item.TransferName)</h2>
+                <p class="position mb-10">@Html.DisplayFor(modelItem => item.tPosition.positionPosition)</p>
+                <span class="position mb-10">@Html.DisplayFor(modelItem => item.tPosition1.positionPosition)</span>
+                <p>@Html.DisplayFor(modelItem => item.TransferNeuter)</p>
                 @Html.ActionLink("更多資訊", "More", new { id = item.TransferID })
-            </div>-->
-        }
-    </div>
+            </div>
+        </div>
+    }
+</div>

@@ -5,45 +5,104 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<link href="~/Content/rescueMoreDetails.css" rel="stylesheet" />
+<link href="~/Content/transferMoreDetails.css" rel="stylesheet" />
 
+<!-- More Details Section -->
 <section class="moreDetails">
-    <div class="pic d-flex justify-content-center mt-5 mb-5"><img src="~/UpImg/@Html.DisplayFor(model => model.TransferPictures)"></div>
-    <div class="details">
-        <div class="content">
-            <div class="title mb-5">@Html.DisplayFor(model => model.TransferName)</div><span class="species mb-5">@Html.DisplayFor(model => model.tSpecies.SpeciesName)</span>
-            <div class="time mt-3 mb-3">
-                送養地點：@Html.DisplayFor(model => model.tPosition.positionPosition)@Html.DisplayFor(model => model.tPosition1.positionPosition)
-            </div>
-            <div class="isDone mb-3">
-                案件狀態：@Html.DisplayFor(model => model.TransferDone)
-            </div>
-            <div class="event mb-3">
-                動物性別：@Html.DisplayFor(model => model.TransferGender)
-            </div>
-            <div class="event mb-3">
-                結紮與否：@Html.DisplayFor(model => model.TransferNeuter)
-            </div>
-            <div class="event mb-3">
-                動物狀態：@Html.DisplayFor(model => model.TransferSituation)
-            </div>
-            <div class="event mb-3">
-                送養要求：@Html.DisplayFor(model => model.TransferRequest)
-            </div>
-            <div class="memberName mb-3">
-                發布者：@Html.DisplayFor(model => model.tMember.MemberName)
-            </div>
-            <div class="memberName mb-3">
-                送養者：@Html.DisplayFor(model => model.TransferContactPerson)
-            </div>
-            <div class="position mb-3">
-                送養者聯絡方式：@Html.DisplayFor(model => model.TransferContactWay)
-            </div>
-
+    <div class="transferContainer">
+        <div class="img col-sm-12 col-md-6">
+            <img src="~/UpImg/@Html.DisplayFor(model => model.TransferPictures)">
         </div>
+        <div class="details col-sm-12 col-md-6">
+            <div class="content">
+                <div class="transfercol">
+                    @Html.LabelFor(model => model.TransferSpecies)
+                    <p>@Html.DisplayFor(model => model.tSpecies.SpeciesName)</p>
+                    @*<label for="">他的種族：<p class="transferSpecies">狗</p></label>*@
+                </div>
+                <div class="transfercol">
+                    @Html.LabelFor(model => model.TransferName)
+                    <p>@Html.DisplayFor(model => model.TransferName) </p>
+                    @*<label for="">他叫做：</label><p class="transferName ">布丁</p>*@
+                </div>
+                <div class="transfercol">
+                    @*<label for="" class="TransferDone">案件狀態：</label><p class="transferdon">未結案</p>*@
+                    @Html.LabelFor(model => model.TransferDone)
+                    <p>@Html.DisplayFor(model => model.TransferDone) </p>
+                </div>
+
+
+                <div class="transfercol">
+                    @*<label for="">
+                            他目前住在：<p class="transferPosition ">台北市</p><p class="transferPosition  ">大安區</p>
+                        </label>*@
+                    @Html.LabelFor(model => model.TransferPositionCity)
+                    <p>@Html.DisplayFor(model => model.tPosition.positionPosition)</p>
+                    <p>@Html.DisplayFor(model => model.tPosition1.positionPosition)</p>
+                </div>
+                <div class="transfercol">
+                    @*<label for="">
+                            他現在的狀況：
+                            <p class="transferSituation 3">身體健康良好，無白血愛滋。</p>
+                        </label>*@
+                    @Html.LabelFor(model => model.TransferSituation)
+                    <p>@Html.DisplayFor(model => model.TransferSituation)</p>
+                </div>
+                <div class="transfercol">
+                    @*<label for="">
+                            認養條件：
+                            <p class="transferRequest">成年，經濟獨立。<br>有一些貸款一大情緒清除地方他是方面演出顯示，瞬間士兵一家此刻家族股市，之一營銷，休閒一個授權有限廠商，安裝專業確實動物，四周威脅五年固定諾基亞化工，完美士兵走勢意大利預測魯蛇你怎不來中間手術賓館是怎麼總經理，此外女士相信和諧有一定環境實際舉辦主演推坑大魔。</p>
+                        </label>*@
+                    @Html.Label("需要具備以下能力才能認養：")
+                    <p>@Html.DisplayFor(model => model.TransferRequest)</p>
+                </div>
+                <div class="transfercol">
+                    @*<label for="">他的性別：<p class="transferGender ">公</p></label>*@
+                    @Html.Label("公的母的：")
+                    <p>@Html.DisplayFor(model => model.TransferGender)</p>
+                </div>
+                <div class="transfercol">
+                    @*<label for="">結紮了沒：<p class="transferNeuter ">結紮了</p></label>*@
+                    @Html.Label("結紮了沒：")
+                    <p>@Html.DisplayFor(model => model.TransferNeuter)</p>
+                </div>
+                <button class="showTxt btn btn-primary">我想認養</button>
+                <div class="transfercol contactinfo">
+                    @*<label for="">聯絡人：<p class="transferContactPerson ">李先生</p></label>*@
+                    @Html.Label("找這個人認養：")
+                    <p>@Html.DisplayFor(model => model.TransferContactPerson) </p>
+                </div>
+                <div class="transfercol contactinfo">
+                    @*<label for="">聯絡方式：<p class="transferContactWay">手機 0912712712</p></label>*@
+                    @Html.Label("想清楚再聯絡：")
+                    <p>@Html.DisplayFor(model => model.TransferContactWay)</p>
+                </div>
+            </div>
+            <div class="btn d-flex justify-content-between">
+                @if (Convert.ToInt32(Session["UserID"]) == Model.TransferMemberID)
+                {
+                    <div class="user">
+                        <input type="submit" value="編輯" class="btn btn-warning">
+                        <input type="submit" value="刪除" class="btn btn-danger">
+                    </div>
+                }
+                <div class="viewer">
+                    @*<input type="submit" value="回到清單" class="btn btn-info">*@
+                    @if (Session["UserID"] != null)
+                    {
+                        @Html.ActionLink("回到清單", "List", "TransferMember")
+                    }
+                    else
+                    {
+                        @Html.ActionLink("回到清單", "List", "Transfer")
+                    }
+                </div>
+
+            </div>
+        </div>
+
     </div>
+
 </section>
 
-<p>
-    @Html.ActionLink("回到清單", "List")
-</p>
+<script src="~/Scripts/transferMoreDetails.js"></script>

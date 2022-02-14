@@ -100,6 +100,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\DropdownSearch.css" />
     <Content Include="Content\indexVer2.css" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\RescueList.css" />
@@ -107,13 +108,29 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\SubPageLayoutVer2.css" />
     <Content Include="Content\TransferCard.css" />
+    <Content Include="Content\transferform.css" />
+    <Content Include="Content\TransferMoreDetails.css" />
     <Content Include="Global.asax" />
     <Content Include="Img\1.jpg" />
+    <Content Include="Img\10.jpg" />
+    <Content Include="Img\11.jpg" />
+    <Content Include="Img\12.jpg" />
+    <Content Include="Img\13.jpg" />
+    <Content Include="Img\14.jpg" />
+    <Content Include="Img\15.jpg" />
+    <Content Include="Img\16.jpg" />
+    <Content Include="Img\17.jpg" />
     <Content Include="Img\2.jpg" />
     <Content Include="Img\3.jpg" />
     <Content Include="Img\4.jpg" />
     <Content Include="Img\5.jpg" />
     <Content Include="Img\6.jpg" />
+    <Content Include="Img\7.jpg" />
+    <Content Include="Img\8.jpg" />
+    <Content Include="Img\9.jpg" />
+    <Content Include="Img\bcimg.jpg" />
+    <Content Include="Img\bcimg2.jpg" />
+    <Content Include="Img\bcimg3.jpg" />
     <Content Include="Img\logo.png" />
     <Content Include="Img\logoSmall.png" />
     <Content Include="Models\Model1.Context.tt">
@@ -131,12 +148,29 @@
     <Content Include="Scripts\jquery-3.6.0.min.js" />
     <Content Include="Scripts\Login.js" />
     <Content Include="Scripts\SubPageLayoutVer2.js" />
+    <Content Include="Scripts\transferMoreDetails.js" />
     <Content Include="UpImg\1.jpg" />
+    <Content Include="UpImg\10.jpg" />
+    <Content Include="UpImg\11.jpg" />
+    <Content Include="UpImg\12.jpg" />
+    <Content Include="UpImg\13.jpg" />
+    <Content Include="UpImg\14.jpg" />
+    <Content Include="UpImg\15.jpg" />
+    <Content Include="UpImg\16.jpg" />
+    <Content Include="UpImg\17.jpg" />
     <Content Include="UpImg\2.jpg" />
     <Content Include="UpImg\3.jpg" />
     <Content Include="UpImg\4.jpg" />
     <Content Include="UpImg\5.jpg" />
     <Content Include="UpImg\6.jpg" />
+    <Content Include="UpImg\7.jpg" />
+    <Content Include="UpImg\8.jpg" />
+    <Content Include="UpImg\9.jpg" />
+    <Content Include="UpImg\bcimg.jpg" />
+    <Content Include="UpImg\bcimg2.jpg" />
+    <Content Include="UpImg\bcimg3.jpg" />
+    <Content Include="UpImg\logo.png" />
+    <Content Include="UpImg\logoSmall.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -207,8 +241,6 @@
     <Content Include="Views\Shared\_IndexVer2.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Shared\_IndexMember.cshtml" />
-    <Content Include="Views\Shared\_LayoutMember.cshtml" />
     <Content Include="Views\Rescue\List.cshtml" />
     <Content Include="Views\Rescue\More.cshtml" />
     <Content Include="Views\RescueMember\Edit.cshtml" />
@@ -220,6 +252,10 @@
     <Content Include="Views\Transfer\List.cshtml" />
     <Content Include="Views\Transfer\More.cshtml" />
     <Content Include="Views\RescueTraceList\Tracelist.cshtml" />
+    <Content Include="Views\TransferMember\Transfer.cshtml" />
+    <Content Include="Views\TransferMember\Edit.cshtml" />
+    <Content Include="Views\TransferMember\List.cshtml" />
+    <Content Include="Views\TransferMember\More.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -229,7 +265,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\TransferMember\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

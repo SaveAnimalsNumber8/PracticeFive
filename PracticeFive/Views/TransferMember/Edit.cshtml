@@ -1,0 +1,184 @@
+﻿@model PracticeFive.Models.tTransfer
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("Edit", "TransferMember", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <div class="form-group" hidden>
+            @Html.LabelFor(model => model.TransferID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TransferID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TransferID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TransferSpecies, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.TransferSpecies, (SelectList)ViewBag.Species, "請選擇", new { @class = "text-primary", @id = "Species" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TransferName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TransferName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TransferName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TransferDone, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @switch (Model.TransferDone)
+                {
+                    case "已結案":
+                        <select id="selectorTransferDone" name="selectorTransferDone" style="">
+                            <option value="請選擇">請選擇</option>
+                            <option selected="selected" value="已結案">已結案</option>
+                            <option value="未結案">未結案</option>
+                        </select>
+                        break;
+                    case "未結案":
+                        <select id="selectorTransferDone" name="selectorTransferDone" style="">
+                            <option value="請選擇">請選擇</option>
+                            <option value="已結案">已結案</option>
+                            <option selected="selected" value="未結案">未結案</option>
+                        </select>
+                        break;
+                }
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TransferPictures, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="upImg" value="upImg" id="upImg" />
+                @Html.EditorFor(model => model.TransferPictures, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TransferPictures, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TransferPositionCity, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.TransferPositionCity, (IEnumerable<SelectListItem>)ViewBag.City, "請選擇", new { @class = "text-primary", @id = "City" })
+                <span>@Html.DropDownListFor(m => m.TransferPositionCountry, (IEnumerable<SelectListItem>)ViewBag.Country, "請選擇", new { @class = "text-primary", @id = "Country" })</span>
+                @Html.ValidationMessageFor(model => model.TransferPositionCity, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.TransferPositionCountry, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TransferRequest, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TransferRequest, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TransferRequest, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TransferGender, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TransferGender, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TransferGender, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TransferNeuter, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @switch (Model.TransferNeuter)
+                {
+                    case "已結紮":
+                        <select id="selectorTransferNeuter" name="selectorTransferNeuter" style="">
+                            <option value="請選擇">請選擇</option>
+                            <option selected="selected" value="已結紮">已結紮</option>
+                            <option value="未結紮">未結紮</option>
+                        </select>
+                        break;
+                    case "未結紮":
+                        <select id="selectorTransferNeuter" name="selectorTransferNeuter" style="">
+                            <option value="請選擇">請選擇</option>
+                            <option value="已結紮">已結紮</option>
+                            <option selected="selected" value="未結紮">未結紮</option>
+                        </select>
+                        break;
+                }
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TransferSituation, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TransferSituation, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TransferSituation, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TransferContactPerson, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TransferContactPerson, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TransferContactPerson, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TransferContactWay, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TransferContactWay, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TransferContactWay, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="儲存修改" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script>
+    $('#City').change(function () {
+        var selectedCity = $('#City option:selected').val();
+        var country = $('#Country');
+        country.empty();
+        $.ajax({
+            type: "Post",
+            url: '@Url.Action("getCountry", "RescueMember")?id=' + selectedCity,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                if (data == "") {
+                    country.append("<option value=''>請選擇</option>");
+                }
+                else {
+                    var jo = JSON.parse(data);
+                    country.append("<option value=''>請選擇</option>");
+                    /*console.log(jo);*/
+                    for (i = 0; i < jo.length; i++) {
+                        country.append("<option value='" + jo[i].Value + "'>" + jo[i].Text + "</option>");
+                    }
+                }
+            },
+            failure: function (errMsg) {
+                country.append("<option value=''>請選擇縣市</option>");
+            }
+        })
+    })
+</script>
+
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>

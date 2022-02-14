@@ -1,0 +1,36 @@
+﻿@model IEnumerable<PracticeFive.Models.tTransfer>
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/TransferCard.css" rel="stylesheet" />
+
+<div class="searchNav d-flex justify-content-center ">
+    @using (Html.BeginForm())
+    {
+        <h4>送養物種：</h4>
+        @Html.DropDownList("TransferSpeciesSearch", new SelectList(ViewBag.SpeciesList), "請選擇", new { @class = "dropdownstyle" })
+        @*@Html.DropDownListFor(Model.TransferSpecies, (IEnumerable<SelectListItem>)ViewBag.Species, "請選擇")*@
+        <input type="submit" value="搜尋" class="searchBtn">
+    }
+</div>
+
+<div class="containerSelf d-flex justify-content-center align-items-center">
+    @foreach (var item in Model)
+    {
+        <div class="card col-xxl-4 col-lg-3 col-md-6 col-sm-12">
+            <div class="imgBox">
+                <img src="~/UpImg/@Html.DisplayFor(modelItem => item.TransferPictures)" alt="">
+            </div>
+            <div class="content">
+                <h2>@Html.DisplayFor(modelItem => item.TransferName)</h2>
+                <p class="position mb-10">@Html.DisplayFor(modelItem => item.tPosition.positionPosition)</p>
+                <span class="position mb-10">@Html.DisplayFor(modelItem => item.tPosition1.positionPosition)</span>
+                <p>@Html.DisplayFor(modelItem => item.TransferNeuter)</p>
+                @Html.ActionLink("更多資訊", "More", new { id = item.TransferID })
+            </div>
+        </div>
+    }
+</div>
