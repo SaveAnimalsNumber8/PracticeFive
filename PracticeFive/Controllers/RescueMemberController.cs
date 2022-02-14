@@ -135,7 +135,8 @@ namespace PracticeFive.Controllers
             var rescueSpecies = sadb.tSpecies.ToList();
             ViewBag.Species = new SelectList(rescueSpecies, "SpeciesID", "SpeciesName");
 
-            pRescue.RescueTitle = Request.Form["selector"].ToString();
+            pRescue.RescueTitle = Request.Form["selectorTitle"];
+            pRescue.ResCueDone = Request.Form["selectorResCueDone"];
             pRescue.RescueMemberID = Convert.ToInt32(Session["UserID"]);
             pRescue.Created_At = DateTime.Now;
 

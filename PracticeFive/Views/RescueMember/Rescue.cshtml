@@ -4,97 +4,105 @@
     ViewBag.Title = "Rescue";
     Layout = "~/Views/Shared/_LayoutMember.cshtml";
 }
-
+<head>
+    <link rel="stylesheet" href="~/Content/RescueCreateEdit.css">
+</head>
 <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<body class="bodyimagecreate">
+    <section class="inputbackground">
+        <div class="contentmargin">
+            <h3><i class="fas fa-flag"></i>新增通報資訊</h3>
+            @using (Html.BeginForm("Rescue", "RescueMember", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        通報案件類別：
+                        @*@Html.LabelFor(model => model.RescueTitle, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="col-md-10 labelpadding">
+                            @*@Html.DropDownListFor(m => m.RescueTitle, (SelectList)ViewBag.SelectList, "請選擇", new { @class = "text-primary", @id = "City" })*@
+                            <select id="selector" name="selectorTitle" style="">
+                                <option selected="selected" value="請選擇">請選擇</option>
+                                <option value="尋獲">尋獲</option>
+                                <option value="協尋">協尋</option>
+                                <option value="救援">救援</option>
+                            </select>
+                        </div>
+                    </div>
 
-<h2>Rescue</h2>
+                    <div class="form-group">
+                        物種：
+                        @*@Html.LabelFor(model => model.RescueSpecies, "RescueSpecies", htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="col-md-10 labelpadding">
+                            @Html.DropDownListFor(m => m.RescueSpecies, (IEnumerable<SelectListItem>)ViewBag.Species, "請選擇")
+                            @Html.ValidationMessageFor(model => model.RescueSpecies, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
 
-
-
-@using (Html.BeginForm("Rescue", "RescueMember", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.RescueTitle, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @*@Html.DropDownListFor(m => m.RescueTitle, (SelectList)ViewBag.SelectList, "請選擇", new { @class = "text-primary", @id = "City" })*@
-                <select id="selector" name="selectorTitle" style="">
-                    <option selected="selected" value="請選擇">請選擇</option>
-                    <option value="尋獲">尋獲</option>
-                    <option value="協尋">協尋</option>
-                    <option value="救援">救援</option>
-                </select>
-            </div>
+                    <div class="form-group">
+                        案件狀態：
+                        @*@Html.LabelFor(model => model.ResCueDone, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="col-md-10 labelpadding">
+                            <select id="selector" name="selectorResCueDone" style="">
+                                <option selected="selected" value="請選擇">請選擇</option>
+                                <option value="未結案">未結案</option>
+                                <option value="已結案">已結案</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        照片上傳:
+                        @*@Html.LabelFor(model => model.RescuePictures, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="col-md-10 labelpadding">
+                            <input type="file" name="upImg" value="upImg" id="upImg" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        所在位置：
+                        @*@Html.LabelFor(model => model.RescuePositionCity, "RescuePosition", htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="col-md-10 labelpadding">
+                            @Html.DropDownListFor(m => m.RescuePositionCity, (IEnumerable<SelectListItem>)ViewBag.City, "請選擇", new { @id = "City" })
+                            <span>@Html.DropDownListFor(m => m.RescuePositionCountry, (IEnumerable<SelectListItem>)ViewBag.Country, "請選擇", new { @id = "Country" })</span>
+                            @Html.ValidationMessageFor(model => model.RescuePositionCity, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.RescuePositionCountry, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        案件內容說明：
+                        @*@Html.LabelFor(model => model.RescueEvent, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="col-md-10 labelpadding">
+                            <textarea class="textareaevent" id="RescueEvent" name="RescueEvent" type="text"
+                                      placeholder="請填寫案件說明及需要的協助內容
+Ex:X月X日因外面鞭炮聲驚嚇，掙脫牽繩逃出，逃出時的特徵
+Ex:母狗於樹叢中生下約5隻小狗，疑似昨日寒流導致小狗失溫"></textarea>
+                            @*@Html.EditorFor(model => model.RescueEvent, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @Html.ValidationMessageFor(model => model.RescueEvent, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        通報處理情況：
+                        @*@Html.LabelFor(model => model.RescueProgress, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="col-md-10 labelpadding">
+                            <textarea class="textareaprocess" id="RescueProgress" name="RescueProgress" type="text"
+                                      placeholder="請填寫您當下處理情況"></textarea>
+                            @*@Html.EditorFor(model => model.RescueProgress, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @Html.ValidationMessageFor(model => model.RescueProgress, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10  btnmargin">
+                        <input type="submit" value="刊登通報" class="btn btn-default" />
+                    </div>
+                </div>
+            }
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ResCueDone, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <select id="selector" name="selectorResCueDone" style="">
-                    <option selected="selected" value="請選擇">請選擇</option>
-                    <option value="未結案">未結案</option>
-                    <option value="已結案">已結案</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.RescuePictures, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="file" name="upImg" value="upImg" id="upImg" />
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.RescuePositionCity, "RescuePosition", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(m => m.RescuePositionCity, (IEnumerable<SelectListItem>)ViewBag.City, "請選擇", new { @class = "text-primary", @id = "City" })
-                <span>@Html.DropDownListFor(m => m.RescuePositionCountry, (IEnumerable<SelectListItem>)ViewBag.Country, "請選擇", new { @class = "text-primary", @id = "Country" })</span>
-                @Html.ValidationMessageFor(model => model.RescuePositionCity, "", new { @class = "text-danger" })
-                @Html.ValidationMessageFor(model => model.RescuePositionCountry, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.RescueEvent, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.RescueEvent, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.RescueEvent, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.RescueSpecies, "RescueSpecies", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(m => m.RescueSpecies, (IEnumerable<SelectListItem>)ViewBag.Species, "請選擇")
-                @Html.ValidationMessageFor(model => model.RescueSpecies, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.RescueProgress, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.RescueProgress, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.RescueProgress, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-<script>
+    </section>
+</body>
+    @*<div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>*@
+    <script>
     $('#City').change(function () {
         var selectedCity = $('#City option:selected').val();
         var country = $('#Country');
@@ -123,4 +131,4 @@
             }
         })
     })
-</script>
+    </script>
