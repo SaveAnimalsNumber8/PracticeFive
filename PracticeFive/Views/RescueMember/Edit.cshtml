@@ -103,7 +103,7 @@
                         案件內容說明：
                         @*@Html.LabelFor(model => model.RescueEvent, htmlAttributes: new { @class = "control-label col-md-2" })*@
                         <div class="labelpadding">
-                            @Html.EditorFor(model => model.RescueEvent, new { htmlAttributes = new { @class = "textareaevent" } })
+                            @Html.EditorFor(model => model.RescueEvent, new { @class = "form-control text-box" } )
                             @Html.ValidationMessageFor(model => model.RescueEvent, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -111,7 +111,7 @@
                         通報處理情況：
                         @*@Html.LabelFor(model => model.RescueProgress, htmlAttributes: new { @class = "control-label col-md-2" })*@
                         <div class="labelpadding">
-                            @Html.EditorFor(model => model.RescueProgress, new { htmlAttributes = new { @class = "textareaprocess" } })
+                            @Html.EditorFor(model => model.RescueProgress,  new { @class = "form-control" } )
                             @Html.ValidationMessageFor(model => model.RescueProgress, "", new { @class = "text-danger" })
                         </div>
                     </div>

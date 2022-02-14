@@ -75,7 +75,6 @@
                                       placeholder="請填寫案件說明及需要的協助內容
 Ex:X月X日因外面鞭炮聲驚嚇，掙脫牽繩逃出，逃出時的特徵
 Ex:母狗於樹叢中生下約5隻小狗，疑似昨日寒流導致小狗失溫"></textarea>
-                            @*@Html.EditorFor(model => model.RescueEvent, new { htmlAttributes = new { @class = "form-control" } })*@
                             @Html.ValidationMessageFor(model => model.RescueEvent, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -85,7 +84,6 @@ Ex:母狗於樹叢中生下約5隻小狗，疑似昨日寒流導致小狗失溫"
                         <div class="col-md-10 labelpadding">
                             <textarea class="textareaprocess" id="RescueProgress" name="RescueProgress" type="text"
                                       placeholder="請填寫您當下處理情況"></textarea>
-                            @*@Html.EditorFor(model => model.RescueProgress, new { htmlAttributes = new { @class = "form-control" } })*@
                             @Html.ValidationMessageFor(model => model.RescueProgress, "", new { @class = "text-danger" })
                         </div>
                     </div>
