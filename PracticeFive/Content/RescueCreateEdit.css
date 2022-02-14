@@ -41,12 +41,26 @@
     padding-top: 8px;
 }
 .btnmargin {
-    padding-left:450px;
+    margin-left:400px
 }
+.btnflex{
+    display:flex;
+    justify-content:space-between;
+}
+
 .textareaevent {
-    height: 200px;
-    width: 500px;
     resize: none;
+    display: block;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 .textareaprocess {
     height: 50px;

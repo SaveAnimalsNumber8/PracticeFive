@@ -89,7 +89,8 @@ Ex:母狗於樹叢中生下約5隻小狗，疑似昨日寒流導致小狗失溫"
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10  btnmargin">
+                    <div class="col-md-offset-2 col-md-10 btnflex">
+                        <div>@Html.ActionLink("取消通報", "Index", "", new { @class = "btn", onclick = "return confirm('確認放棄通報?')" })</div>
                         <input type="submit" value="刊登通報" class="btn btn-default" />
                     </div>
                 </div>
@@ -97,9 +98,6 @@ Ex:母狗於樹叢中生下約5隻小狗，疑似昨日寒流導致小狗失溫"
         </div>
     </section>
 </body>
-    @*<div>
-            @Html.ActionLink("Back to List", "Index")
-        </div>*@
     <script>
     $('#City').change(function () {
         var selectedCity = $('#City option:selected').val();

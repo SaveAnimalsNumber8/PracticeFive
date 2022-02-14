@@ -103,7 +103,7 @@
                         案件內容說明：
                         @*@Html.LabelFor(model => model.RescueEvent, htmlAttributes: new { @class = "control-label col-md-2" })*@
                         <div class="labelpadding">
-                            @Html.EditorFor(model => model.RescueEvent, new { @class = "form-control text-box" } )
+                            @Html.TextAreaFor(model => model.RescueEvent, 10, 40, new { @class= "textareaevent" })
                             @Html.ValidationMessageFor(model => model.RescueEvent, "", new { @class = "text-danger" })
                         </div>
                     </div>
