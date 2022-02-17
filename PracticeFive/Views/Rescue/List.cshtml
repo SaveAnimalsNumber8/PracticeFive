@@ -4,40 +4,56 @@
     ViewBag.Title = "List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<section class="rescueList">
-    <div class="searchNav">
-        @using (Html.BeginForm())
-        {
-            <h4>案件種類:</h4>
-            @Html.DropDownList("RescueTitlesearch", new SelectList(ViewBag.rescueTitleList), "請選擇", new { @class = "dropdownstyle" })
-            <input type="submit" value="搜尋" class="searchBtn">
+<head>
+    <style>
+        .ellipsis {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
-    </div>
-    <div class="box">
-        <div class="ListContent d-flex flex-wrap">
-            @foreach (var item in Model)
+        .backcolor {
+            background-color: #cee5d0;
+        }
+        .justcontent {
+            justify-content: center;
+        }
+    </style>
+</head>
+<body class="backcolor">
+    <section class="rescueList">
+        <div class="searchNav">
+            @using (Html.BeginForm())
             {
-                <div class="card col-xl-3 col-md-4 col-sm-6 p-3">
-                    <div class="title mb-10">
-                        @*<h2>@Html.DisplayFor(modelItem => item.RescueID)</h2>*@
-                        @switch (item.RescueTitle)
-                        {
-                            case "尋獲":<h2>尋獲</h2> break;
-                            case "協尋": <h2>協尋</h2> break;
-                            case "救援": <h2>救援</h2>break;
-                        }
-                    </div>
-                    <div class="pic mb-10"><img src="~/UpImg/@Html.DisplayFor(modelItem => item.RescuePictures)" alt=""></div>
-                    <div class="content mb-10">
-                        <h3 class="position mb-10">@Html.DisplayFor(modelItem => item.tPosition.positionPosition)</h3>
-                        <h3 class="position mb-10">@Html.DisplayFor(modelItem => item.tPosition1.positionPosition)</h3>
-                        <p class="event mb-10" >@Html.DisplayFor(modelItem => item.RescueEvent)</p>
-                        <p class="time mb-10">@Html.DisplayFor(modelItem => item.Created_At)</p>
-                    </div>
-                    @Html.ActionLink("更多資訊", "More", new { id = item.RescueID })
-                </div>
+                <h4>案件種類:</h4>
+                @Html.DropDownList("RescueTitlesearch", new SelectList(ViewBag.rescueTitleList), "請選擇", new { @class = "dropdownstyle" })
+                <input type="submit" value="搜尋" class="searchBtn">
             }
         </div>
-    </div>
-</section>
+        <div class="box">
+            <div class="justcontent ListContent d-flex flex-wrap">
+                @foreach (var item in Model)
+                {
+                    <div class="m-3 card col-xl-3 col-md-4 col-sm-6 p-3">
+                        <div class="title mb-10">
+                            @*<h2>@Html.DisplayFor(modelItem => item.RescueID)</h2>*@
+                            @switch (item.RescueTitle)
+                            {
+                                case "尋獲":<h2>尋獲</h2> break;
+                                case "協尋": <h2>協尋</h2> break;
+                                case "救援": <h2>救援</h2>break;
+                            }
+                        </div>
+                        <div class="pic mb-10"><img src="~/UpImg/@Html.DisplayFor(modelItem => item.RescuePictures)" alt=""></div>
+                        <div class="content mb-10">
+                            <h3 class="position mb-10">@Html.DisplayFor(modelItem => item.tPosition.positionPosition)</h3>
+                            <h3 class="position mb-10">@Html.DisplayFor(modelItem => item.tPosition1.positionPosition)</h3>
+                            <p class="event mb-10 ellipsis">@Html.DisplayFor(modelItem => item.RescueEvent)</p>
+                            <p class="time mb-10">@Html.DisplayFor(modelItem => item.Created_At)</p>
+                        </div>
+                        @Html.ActionLink("更多資訊", "More", new { id = item.RescueID })
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+</body>

@@ -1,0 +1,67 @@
+﻿@model PracticeFive.Models.tMember
+
+@{
+    ViewBag.Title = "MemberEdit";
+    Layout = "~/Views/Shared/_LayoutMemberZone.cshtml";
+}
+
+<head>
+    <link rel="stylesheet" href="~/Content/MemberEdit.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+</head>
+<body class="bodyback">
+    <div class="flexpassword">
+        <div class="inputbackground">
+            <input type="hidden" name="MemberID" value="@Model.MemberID" />
+            <div class="contentprofilo">
+                <h4><i class="fas fa-user-alt"></i>基本資料</h4>
+                <div>會員姓名：</div>
+                <div class="contentborder">@Html.DisplayFor(model => model.MemberName)</div>
+                <div>帳號：</div>
+                <div class="contentborder">@Html.DisplayFor(model => model.MemberAccount)</div>
+                <div>最後變更時間：</div>
+                <div class="contentborder">@Html.DisplayFor(model => model.Created_At)</div>
+                <div>@Html.ActionLink("變更密碼", "MemberEdit", "Member", new { id = Model.MemberID }, new { @class = "btnlist" })</div>
+            </div>
+        </div>
+        <div class="inputbackground contentprofilo">
+            <h4><i class="fas fa-wrench"></i>修改密碼</h4>
+            @using (Html.BeginForm())
+            {
+                <input type="hidden" name="MemberID" value="@Model.MemberID" />
+                <input type="hidden" name="MemberPassword" value="@Model.MemberPassword" />
+                <input type="hidden" name="MemberAccount" value="@Model.MemberAccount" />
+                <input type="hidden" name="MemberName" value="@Model.MemberName" />
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+
+                    <p>
+                        請輸入舊密碼：
+                        <input data-toggle="password" class="form-control" type="password" name="oldpassword" placeholder="輸入舊密碼"
+                               data-eye-class="material-icons" data-eye-open-class="visibility_off" data-eye-close-class="visibility"
+                               data-eye-class-position-inside="true">
+                    </p>
+                    <p>
+                        請輸入新密碼：
+                        <input data-toggle="password" data-placement="after" class="form-control" type="password" name="newpassword1" placeholder="輸入新密碼"
+                               data-eye-class="material-icons" data-eye-open-class="visibility_off" data-eye-close-class="visibility"
+                               data-eye-class-position-inside="true">
+                    </p>
+                    <p>
+                        再次輸入新密碼：
+                        <input data-toggle="password" data-placement="after" class="form-control" type="password" name="newpassword2" placeholder="再輸入一次新密碼"
+                               data-eye-class="material-icons" data-eye-open-class="visibility_off" data-eye-close-class="visibility"
+                               data-eye-class-position-inside="true">
+                    </p>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="確定修改" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap-show-password.js"></script>

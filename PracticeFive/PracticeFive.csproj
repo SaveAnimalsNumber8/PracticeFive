@@ -102,7 +102,10 @@
   <ItemGroup>
     <Content Include="Content\indexVer2.css" />
     <Content Include="Content\Login.css" />
+    <Content Include="Content\MemberEdit.css" />
+    <Content Include="Content\memberzonesidebar.css" />
     <Content Include="Content\RescueCreateEdit.css" />
+    <Content Include="Content\Rescuedetails.css" />
     <Content Include="Content\RescueList.css" />
     <Content Include="Content\rescueMoreDetails.css" />
     <Content Include="Content\Tracelist.css" />
@@ -112,14 +115,15 @@
     <Content Include="Img\1.jpg" />
     <Content Include="Img\10.jpg" />
     <Content Include="Img\11.jpg" />
-    <Content Include="Img\12.jpg" />
     <Content Include="Img\2.jpg" />
     <Content Include="Img\3.jpg" />
     <Content Include="Img\4.jpg" />
     <Content Include="Img\5.jpg" />
     <Content Include="Img\6.jpg" />
+    <Content Include="Img\hide.svg" />
     <Content Include="Img\logo.png" />
     <Content Include="Img\logoSmall.png" />
+    <Content Include="Img\show.svg" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
@@ -130,9 +134,19 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\bootstrap-show-password.js" />
+    <Content Include="Scripts\bootstrap-show-password.min.js" />
+    <Content Include="Scripts\bootstrap-v3\css\bootstrap-theme.css" />
+    <Content Include="Scripts\bootstrap-v3\css\bootstrap-theme.min.css" />
+    <Content Include="Scripts\bootstrap-v3\css\bootstrap.css" />
+    <Content Include="Scripts\bootstrap-v3\css\bootstrap.min.css" />
+    <Content Include="Scripts\bootstrap-v3\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\bootstrap-v3\js\bootstrap.js" />
+    <Content Include="Scripts\bootstrap-v3\js\bootstrap.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\indexVer2.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
+    <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\Login.js" />
     <Content Include="Scripts\SubPageLayoutVer2.js" />
     <Content Include="UpImg\1.jpg" />
@@ -225,6 +239,12 @@
     <Content Include="Views\RescueTraceList\Tracelist.cshtml" />
     <Content Include="Views\RescueMember\myRescuelist.cshtml" />
     <Content Include="Views\RescueMember\Edit.cshtml" />
+    <Content Include="Views\Member\Profilo.cshtml" />
+    <Content Include="Views\Member\MemberEdit.cshtml" />
+    <Content Include="Scripts\bootstrap-v3\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Scripts\bootstrap-v3\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Scripts\bootstrap-v3\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Views\Shared\_LayoutMemberZone.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

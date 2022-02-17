@@ -12,50 +12,65 @@
     }
 }
 
-<link href="~/Content/rescueMoreDetails.css" rel="stylesheet" />
-
-<section class="moreDetails">
-    <div class="pic d-flex justify-content-center mt-5 mb-5"><img src="~/UpImg/@Html.DisplayFor(model => model.RescuePictures)"></div>
-    <div class="details">
-        <div class="content">
-            <div class="title mb-5">@Html.DisplayFor(model => model.RescueTitle)</div><span class="species mb-5">@Html.DisplayFor(model => model.tSpecies.SpeciesName)</span>
-            <div class="time mt-3 mb-3">
-                通報時間：@Html.DisplayFor(model => model.Created_At)
-            </div>
-            <div class="isDone mb-3">
-                案件狀態：@Html.DisplayFor(model => model.ResCueDone)
-            </div>
-            <div class="event mb-3">
-                通報類別：@Html.DisplayFor(model => model.RescueEvent)
-            </div>
-            <div class="memberName mb-3">
-                通報者：@Html.DisplayFor(model => model.tMember.MemberName)
-            </div>
-            <div class="position mb-3">
-                通報位置：@Html.DisplayFor(model => model.tPosition.positionPosition)@Html.DisplayFor(model => model.tPosition1.positionPosition)
-            </div>
-            <div class="progressing mb-3">
-                <div class="messagebox">
+<link href="~/Content/rescuedetails.css" rel="stylesheet" />
+<body class="bodyimagedetails">
+    <section class="container">
+        <div class="picrange col-sm-12 col-md-6"><img src="~/UpImg/@Html.DisplayFor(model => model.RescuePictures)"></div>
+        <div class="contentsize col-sm-12 col-md-6">
+            <div class="wordsize">
+                <div class="titlefont mb-3">@Html.DisplayFor(model => model.RescueTitle)</div>
+                <div class="contentfont mb-3">物種：@Html.DisplayFor(model => model.tSpecies.SpeciesName)</div>
+                <div class="contentfont mb-3">
+                    通報詳細內容：
+                    <br />
+                    @Html.DisplayFor(model => model.RescueEvent)
+                </div>
+                <div class="contentfont mb-3">
+                    通報者：
+                    @Html.DisplayFor(model => model.tMember.MemberName)
+                </div>
+                <div class="contentfont mb-3">
+                    通報位置：
+                    @Html.DisplayFor(model => model.tPosition.positionPosition)@Html.DisplayFor(model => model.tPosition1.positionPosition)
+                </div>
+                <div class="contentfont mb-3">
+                    通報當時狀態：
                     @Html.DisplayFor(model => model.RescueProgress)
-                    @foreach (var comment in commentlist)
+                </div>
+                <div class="contentfont mt-3 mb-3">
+                    通報時間：@Html.DisplayFor(model => model.Created_At)
+                </div>
+                <div class="mb-3">
+                    <div class="messagetitle">進度更新</div>
+                    <div class="messagebox mb-3">
+
+                        @foreach (var comment in commentlist)
+                        {
+                            <div>
+                                @comment.CommentContent (@comment.Created_At)
+                            </div>
+                        }
+                    </div>
+                    @using (Html.BeginForm("AddRescueComment", "RescueMember", FormMethod.Post))
                     {
-                        <div>
-                            @comment.CommentContent (@comment.Created_At)
+                        @Html.HiddenFor(m => m.RescueID)
+                        <div class="input-group mb-3 ">
+                            @*<input type="text" name="Content" class="form-control" placeholder="回報進度"
+                                   aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <input class="btn btn-outline-secondary" type="submit" value="送出">
+                            </div>*@
                         </div>
                     }
-                </div>
-                <div class="input-group sendmessage">
-                    <input type="text" class="form-control" placeholder="回報進度"
-                           aria-label="Recipient's username" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button">送出</button>
+                    <div class="contentfont mb-3">
+                        案件狀態：@Html.DisplayFor(model => model.ResCueDone)
                     </div>
                 </div>
             </div>
         </div>
+    </section>
+    <div class="contentflex mt-5">
+        <div>@Html.ActionLink("加入追蹤", "Login", "Home", null, new { @class = "btnlist" })</div>
+        <div>@Html.ActionLink("回到清單", "List", "", new { @class = "btnlist" })</div>
     </div>
-</section>
-
-<p>
-    @Html.ActionLink("回到清單", "List")
-</p>
+</body>

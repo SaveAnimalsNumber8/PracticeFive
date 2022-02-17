@@ -48,7 +48,7 @@
     justify-content:space-between;
 }
 
-.textareaevent {
+.textareaedit {
     resize: none;
     display: block;
     padding: 0.375rem 0.75rem;
@@ -67,7 +67,11 @@
     width: 500px;
     resize: none;
 }
-.picfilename{
+    .picfilename{
     font-size:10px;
     visibility:hidden;
+}
+.textareaeventcreat {
+    width:500px;
+    height:175px;
 }

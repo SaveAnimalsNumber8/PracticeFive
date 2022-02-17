@@ -156,7 +156,7 @@ namespace PracticeFive.Controllers
             sadb.Entry(pRescue).State = System.Data.Entity.EntityState.Modified;
             sadb.SaveChanges();
 
-            return RedirectToAction("List", "RescueMember");
+            return RedirectToAction("More", "RescueMember", new { id = pRescue.RescueID });
         }
 
 
@@ -185,7 +185,7 @@ namespace PracticeFive.Controllers
 
             if (rescueDetails == null)
             {
-                return RedirectToAction("List", "Rescue");
+                return RedirectToAction("List", "RescueMember");
             }
             else
             {
@@ -219,19 +219,20 @@ namespace PracticeFive.Controllers
                 sadb.tComment.Add(RescueComment);
                 sadb.SaveChanges();
             }
-            return RedirectToAction("More", "RescueMember");
+            return RedirectToAction("More", "RescueMember",new { id= comment.RescueID });
             //TODO:無法顯示回原本的這筆More
         }
         public ActionResult AddtoFollowrescue(FollowRescue member,int id)
         {
             tRescue rescue = sadb.tRescue.FirstOrDefault(p => p.RescueID == id);
-       
-            if (rescue != null)
+            FollowRescue followrescue = sadb.FollowRescue.FirstOrDefault(p => p.FollowResueID == id);
+
+            if (rescue != null && followrescue == null)
             {
                 sadb.FollowRescue.Add(new FollowRescue() { FollowMemberID = Convert.ToInt32(Session["UserID"]), FollowResueID = id });
             }
             sadb.SaveChanges();
-            return RedirectToAction("List", "RescueMember");
+            return RedirectToAction("More", "RescueMember", new { id = id });
         }
         public ActionResult myRescuelist()
         {
