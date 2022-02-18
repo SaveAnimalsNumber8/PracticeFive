@@ -11,11 +11,9 @@ namespace PracticeFive.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.Web;
-
+    
     public partial class tTransfer
     {
-        public HttpPostedFileBase upImg { get; set; }
         public int TransferID { get; set; }
         public int TransferMemberID { get; set; }
         public string TransferDone { get; set; }

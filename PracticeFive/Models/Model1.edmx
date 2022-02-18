@@ -337,7 +337,7 @@
           <NavigationProperty Name="tBlog" Relationship="SaveAnimalsModel.FK__tBlog__BlogMembe__33D4B598" FromRole="tMember" ToRole="tBlog" />
           <NavigationProperty Name="tComment" Relationship="SaveAnimalsModel.FK__tComment__Commen__49C3F6B7" FromRole="tMember" ToRole="tComment" />
           <NavigationProperty Name="FollowRescue" Relationship="SaveAnimalsModel.FK__FollowRes__Follo__619B8048" FromRole="tMember" ToRole="FollowRescue" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="tPosition">
           <Key>
             <PropertyRef Name="positionID" />

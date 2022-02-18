@@ -21,8 +21,8 @@ namespace PracticeFive.Models
             this.tComment = new HashSet<tComment>();
             this.FollowRescue = new HashSet<FollowRescue>();
         }
-        public HttpPostedFileBase upImg { get; set; }
 
+        public HttpPostedFileBase upImg { get; set; }
         public int RescueID { get; set; }
         public int RescueMemberID { get; set; }
         public string RescueTitle { get; set; }
